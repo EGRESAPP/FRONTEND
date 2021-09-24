@@ -1,4 +1,4 @@
-import React, { Fragment,useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./style.scss";
 
 //librerias
@@ -9,25 +9,32 @@ import { useHistory } from "react-router-dom";
 import MenuHamburger from "../Menus/Hamburger";
 import LoginButton from "../Buttons/Login";
 
-
 //images
 import Logo from "../../Assets/Images/logo.png";
 import LogoMobile from "../../Assets/Images/logo-mobile.png";
 
 //iconos
-import { MdMenu, MdSearch, MdVpnKey,MdPersonAdd} from "react-icons/md";
+import {
+  MdMenu,
+  MdSearch,
+  MdVpnKey,
+  MdPersonAdd,
+  MdBuild,
+} from "react-icons/md";
 import NavbarLink from "../Links/Navbar";
 
 export default function Navegacion(props) {
-  const [menuHamburgerClicked,setMenuHamburgerClicket] = useState(false);
+  const [menuHamburgerClicked, setMenuHamburgerClicket] = useState(false);
 
-  function handlerMenuHamburger(event){
+  function handlerMenuHamburger(event) {
     const valor = !menuHamburgerClicked;
-    setMenuHamburgerClicket(valor)
+    setMenuHamburgerClicket(valor);
   }
 
   const { isLogged } = props;
+
   let history = useHistory();
+
   return (
     <header className="navbar-container">
       <Media
@@ -40,30 +47,47 @@ export default function Navegacion(props) {
         {(matches) => (
           <Fragment>
             {matches.small && (
-              
               <div className="nav-container">
                 <div className="nav-left-side">
-                  <button type="button" className="btn-nav" onClick={handlerMenuHamburger}>
+                  <button
+                    type="button"
+                    className="btn-nav"
+                    onClick={handlerMenuHamburger}
+                  >
                     <MdMenu size="30px" />
                   </button>
                   <div className="logo" onClick={() => history.push("/")}>
-                    <img src={LogoMobile} alt="logo" title="Egresapp"/>
+                    <img src={LogoMobile} alt="logo" title="Egresapp" />
                   </div>
                 </div>
                 <div className="nav-right-side">
                   <button type="button" className="btn-nav" title="Search">
                     <MdSearch size="30px" />
                   </button>
-                  <button type="button" className="btn-nav" title="Iniciar Sesion">
-                    <MdVpnKey size="30px" />
-                  </button>
-                  <button type="button" className="btn-nav" title="Registrar">
-                    <MdPersonAdd size="30px" />
-                  </button>
+                  {isLogged ? (
+                    <button>buton de logeo</button>
+                  ) : (
+                    <>
+                      <button type="button"
+                        className="btn-nav"
+                        title="Iniciar Sesion"
+                        onClick={() => history.push("/login")}
+                      >
+                        <MdVpnKey size="30px" />
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-nav"
+                        title="Registrar"
+                        onClick={() => history.push("/register")}
+                      >
+                        <MdPersonAdd size="30px" />
+                      </button>
+                    </>
+                  )}
                 </div>
-                {menuHamburgerClicked && (<MenuHamburger/>)}
+                {menuHamburgerClicked && <MenuHamburger />}
               </div>
-              
             )}
 
             {matches.medium && (
@@ -73,14 +97,17 @@ export default function Navegacion(props) {
                     <MdMenu size="30px" />
                   </button>
                   <div className="logo" onClick={() => history.push("/")}>
-                    <img src={LogoMobile} alt="logo" title="Egresapp"/>
+                    <img src={LogoMobile} alt="logo" title="Egresapp" />
                   </div>
-                  
                 </div>
                 <div className="nav-right-side">
                   <form className="container-search">
                     <input className="input-search" type="text" name="search" />
-                    <button type="submit" className="button-search" title="Search">
+                    <button
+                      type="submit"
+                      className="button-search"
+                      title="Search"
+                    >
                       <MdSearch size="25px" />
                     </button>
                   </form>

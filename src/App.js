@@ -12,10 +12,13 @@ import RegisterPage from "./Pages/RegisterPage";
 import Navegacion from "./Components/Navbar";
 
 export default function App() {
+
+  const [isLogged,setIsLogged] = useState(true);
+
   return (
     <Router>
       {/*navbar*/}
-        <Navegacion/> 
+        <Navegacion isLogged={isLogged}/> 
       {/*paginas*/}
         <Switch>
           <Route path="/login">
