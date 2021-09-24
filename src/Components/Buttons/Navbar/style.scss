@@ -1,0 +1,15 @@
+@import "../../../Assets/global.scss";
+
+.nav-btn{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    background-color: $seaweed;
+    color: $gunmetal;
+    border-radius: 100%;
+    border:none;
+    &:hover{
+        color: $seaweed;
+        background-color: $gunmetal;
+    }
+}

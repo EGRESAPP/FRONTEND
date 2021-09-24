@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 //paginas
 import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
 
 //componentes
 import Navegacion from "./Components/Navbar";
@@ -19,6 +20,9 @@ export default function App() {
         <Switch>
           <Route path="/login">
             <LoginPage/>
+          </Route>
+          <Route path="/register">
+            <RegisterPage/>
           </Route>
           <Route path="/">
             <LandingPage />
