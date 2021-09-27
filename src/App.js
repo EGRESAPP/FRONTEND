@@ -10,6 +10,7 @@ import RegisterPage from "./Pages/RegisterPage";
 
 //componentes
 import Navegacion from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
             <LandingPage />
           </Route>
         </Switch>
+        {/*footer*/}
+      <Footer/>
     </Router>
   );
 }
