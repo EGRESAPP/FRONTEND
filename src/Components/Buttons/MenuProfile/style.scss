@@ -1,0 +1,20 @@
+@import "../../../Assets/global.scss";
+
+.menu-profile-link{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    padding: 0 5px 0 5px;
+    margin: 5px 0 5px 0;
+    font-size: 16px;
+    background-color:$bblue;
+    color: $seaweed;
+    border: none;
+    border-radius: 5px;
+    &:hover{
+        background-color: $seaweed;
+        color: $bblue;
+        cursor: pointer;
+    }  
+}
