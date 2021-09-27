@@ -1,0 +1,26 @@
+@import "../../../Assets/global.scss";
+
+.menu-link{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 10px 10px 10px 20px;
+    margin-top: 15px;
+    font-size: 20px;
+    background-color: $seaweed;
+    color: $gunmetal;
+    &:hover{
+        background-color: $bblue;
+        color: $seaweed;
+        cursor: pointer;
+    }  
+
+    .icon{
+        img{
+            margin-right: 20px;     
+            width: 35px;
+            height: 35px;
+        }
+    }
+}

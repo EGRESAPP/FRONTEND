@@ -4,8 +4,8 @@ import "./style.scss";
 export default function NavbarLink(props) {
   const { text, page } = props;
   return (
-    <li className="">
-      <a className="" href={page}>
+    <li className="navbar-link">
+      <a href={page}>
         {text}
       </a>
     </li>

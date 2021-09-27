@@ -1,0 +1,42 @@
+@import "../../../Assets/global.scss";
+
+.profile-menu{
+    position: absolute;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    right: 5px;
+    top: 75px;
+    width: 200px;
+    background-color: $bblue; 
+    border: solid 1px $seaweed;
+    border-radius: 5px;
+}
+
+.separador{
+    height: 1px;
+    width: 190px;
+    margin: 5px 0 5px 0;
+    padding: 0 5px 0 5px;
+    background-color: $seaweed;
+}
+
+.profile-title{
+    height: fit-content;
+}
+
+
+.profile-user{
+    display: block;
+    margin:0;
+    color: $seaweed;
+    font-size: 18px;
+}
+
+.profile-email{
+    margin: 0;
+    display: block;
+    color: $seaweed;
+    opacity: .8;
+    font-size: 16px;
+}
