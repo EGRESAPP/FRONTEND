@@ -12,6 +12,7 @@ import DashboardPage from "./Pages/Dashboard";
 
 //componentes
 import Navegacion from "./Components/Navbar";
+import Footer from "./Components/Footer"
 
 export default function App() {
 
@@ -43,6 +44,8 @@ export default function App() {
             <LandingPage />
           </Route>
         </Switch>
+        {/*footer*/}
+        <Footer/>
     </Router>
   );
 }
