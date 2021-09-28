@@ -1,0 +1,38 @@
+@import "../../../Assets/global.scss";
+
+
+.btn-dashboard{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-right: 10px;
+    border: none;
+    color: $gunmetal;
+    background-color: $seaweed;
+    border-radius: 5px;
+    font-size: 20px;
+    &:hover{
+        background-color: white;
+    }
+    img{
+        height: 35px;
+        width: 35px;
+    }
+
+    span{
+        margin-left: 10px;
+    }
+}
+
+@media only screen and(max-width: 480px) {     
+    .btn-dashboard{
+        flex-direction: column;
+        width: 60px;
+        font-size: 12px;
+        span{
+            margin: 0;
+        }
+    }
+}
