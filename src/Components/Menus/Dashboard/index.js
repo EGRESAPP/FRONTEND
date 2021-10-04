@@ -15,7 +15,7 @@ import ValidacionIcon from "../../../Assets/Icons/validation.svg"
 
 export default function MenuDashboard(props) {
   const { userLogged } = props;
-  const { _id, name, lastName, picture, email, role } = userLogged;
+  const {  name, lastName, picture,role } = userLogged;
 
   return (
     /*<aside className="menu-dashboard-container">

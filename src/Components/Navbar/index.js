@@ -60,7 +60,7 @@ export default function Navegacion(props) {
       <Media
         queries={{
           small: "(max-width: 480px)",
-          medium: "(min-width: 481px) and ((max-width: 1024px)",
+          medium: "(min-width: 481px) and (max-width: 1024px)",
           large: "(min-width: 1025px)",
         }}
       >

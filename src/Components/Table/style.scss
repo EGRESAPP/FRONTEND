@@ -1,0 +1,170 @@
+@import "../../Assets/global.scss";
+
+.table-title{
+    color: $seaweed;
+}
+
+.table-container{
+    width: 100%;
+    overflow-x: scroll;
+    height: 900px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+.content-table{
+    width: 100%;
+    border-collapse:collapse ;
+    border-radius: 5px 5px 0 0;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #333333;
+}
+
+.table-header{  
+    background-color: $seaweed;
+    color: white;
+    tr{
+        height: 50px;
+        font-size: 20px;
+        th{
+            min-width: 150px;
+            padding: 5px;
+            text-align: left;
+        }
+    }
+    
+}
+
+.table-body{
+    tr{
+        height: 40px;
+        border-bottom: solid 1px $gunmetal;
+        td{
+            min-width: 150px;
+            font-size: 16px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 500;
+            padding: 10px;
+        }
+        &:nth-child(even){
+            background-color: $gris;
+        }
+        &:last-child{
+            border-bottom: solid 3px $seaweed;
+        }
+        
+    }
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid $gunmetal;
+}
+
+.btn-accion{
+    width: 80px;
+    height: 40px;
+    color: $seaweed;
+    background-color: white;
+    border: solid 1px $seaweed;
+    font-weight: 600;
+    &:hover{
+        background-color: $seaweed;
+        color: white;
+    }
+    
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    min-width: 1050px;
+    margin: 10px 0;
+    .resgisters{
+        display: flex;
+        align-items: center;
+        width: 50%;
+        span{
+            color: $gunmetal;
+            font-size: 18px;
+            margin: 0 10px;
+
+        }
+    }
+    .pagination{
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        
+        .btn-first{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            border-radius: 5px 0 0 5px;
+            &:hover{
+                background-color: white;
+                border: 1px solid $seaweed;
+                color: $seaweed;
+            }
+        }
+        .btn-left{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            &:hover{
+                background-color: white;
+                border: 1px solid $seaweed;
+                color: $seaweed;
+            }
+        }
+        .btn-right{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            &:hover{
+                background-color: white;
+                border: 1px solid $seaweed;
+                color: $seaweed;
+            }
+        }
+        .btn-last{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            border-radius: 0 5px 5px 0;
+            &:hover{
+                background-color: white;
+                border: 1px solid $seaweed;
+                color: $seaweed;
+            }
+        }
+    }
+
+}
+
+@media only screen and(max-width: 480px) {
+    .table-container{
+        margin-top: 0;
+        height: auto;
+    }
+
+    .table-body tr td{
+        min-width: 100px;
+    }
+
+    .table-header tr th{
+        min-width: 100px;
+    }
+
+    .pagination-container{
+        min-width: 700px;
+    }
+}

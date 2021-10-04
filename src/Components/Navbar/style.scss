@@ -6,11 +6,15 @@
     //box-shadow: $seaweed 0px 1px 3px 0px, $seaweed 0px 1px 1px 1px;
 //}
 .nav-container{
+    position: fixed;
     display: flex;
     background-color: $bblue;
     align-items: center;
     width: 100%;
     height: 70px;
+    top:0;
+    z-index: 1000;
+    
 }
 
 .nav-left-side{

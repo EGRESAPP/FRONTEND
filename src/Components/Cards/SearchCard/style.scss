@@ -1,0 +1,52 @@
+@import "../../../Assets/global.scss";
+
+.card-container{
+    box-sizing: border-box;
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border: solid 2px $seaweed;
+    border-radius: 1rem;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    img{
+        object-fit: cover;
+        height: 120px;
+        width: 120px;
+        border: solid 1px $seaweed;
+        border-radius: 100%;
+        padding: 5px;
+        margin: 10px 0;
+
+    }
+    h5{
+        color:$seaweed;
+    }
+    h6{
+        margin-bottom: 20px;
+        color: $gunmetal;
+    }
+    p{
+        margin: 10px 0 0 0;
+        width: 80%;
+        height: 100px;
+        text-align: justify;
+        color: $gunmetal;
+    }
+    button{
+        margin: 20px;
+        align-self: flex-end;
+        border:1px solid $gunmetal;
+        background-color: $white;
+        border-radius: .25rem;
+        color: $gunmetal;
+        &:hover{
+            color: white;
+            background-color: $seaweed;
+        }
+
+    }
+}
