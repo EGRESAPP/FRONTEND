@@ -1,28 +1,47 @@
 const axios = require('axios');
-const BASE_URL = "http://localhost:8080";
+const baseUrl = "http://localhost:8080";
 
-
-export const getUsersByRole = async (token, role, queries) => {  
-  
-  let url;
-  if(queries)
-    url = `${BASE_URL}/users?role=${role}&${queries}`
-  else
-    url = `${BASE_URL}/users?role=${role}`
-
-  console.log(url)
-  let result = await fetch(url, {
-    method:'GET',
-    headers: {
-      Authorization: token,
-    },
-  });
-  
-  return await result.json();
-   
-};
 
 export async function getUsers(token,url){
-    return await axios(BASE_URL+url, { headers: {'Authorization': token} });  
+    return await axios.get(`${baseUrl}${url}`, { headers: {'Authorization': token} });  
 }
 
+export async function login(data){
+  return await axios.post(`${baseUrl}/auth/login`,data)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
+export async function register(data,entity){
+  return await axios.post(`${baseUrl}/${entity}`,data)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
+export async function getEntity(token,url){
+  return await axios.get(`${baseUrl}${url}`,{headers: {'Authorization': token} })
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
+export async function getEntityById(token,url){
+  return await axios.get(`${baseUrl}${url}`,{headers: {'Authorization': token} })
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}

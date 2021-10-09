@@ -19,10 +19,6 @@ export default function CardUser(props) {
                 <h6>{title}</h6>
                 <p>{description}</p>
             </div>
-            <div className="card-foot">
-                <button type="button" className="btn-foot">Mensaje</button>
-                <button type="button" className="btn-foot">Ver</button>
-            </div>
             
         </div>
     );

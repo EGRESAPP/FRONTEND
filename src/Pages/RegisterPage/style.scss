@@ -100,14 +100,15 @@
                 
             }
             .form-radio{
-                padding-left: 23px;
                 display: flex;
                 align-items: center;
                 color: $gunmetal;
+                padding-left: 1rem;
                 label{
+                    margin:0 20px;
                     img{
-                        width: 50px;
-                        height: 50px;
+                        width: 60px;
+                        height: 60px;
                     }
                     input{
                         opacity: 0;
@@ -143,7 +144,16 @@
         .register-right{
             width: 70%;
             .register-form{
-                width: 100%;
+                width: 90%;
+                .form-radio{
+                    label{
+                        margin: 0 5px;
+                        img{
+                            width: 30px;
+                            height: 30px;
+                        }            
+                    }
+                }
             }
         }
     }

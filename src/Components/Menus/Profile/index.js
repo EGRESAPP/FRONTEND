@@ -5,11 +5,13 @@ import "./style.scss";
 import { animated } from "react-spring";
 
 //componentes
-import MenuProfileButton from "../../Buttons/MenuProfile";
-import LogoutButton from "../../Buttons/Logout";
+import MenuProfileLink from "../../Links/MenuProfile";
+import LogoutLink from "../../Links/Logout";
 
 export default function MenuProfile(props) {
-  const { style,name,lastName,email,handlerLogged } = props;
+  const { style,userLogged,handlerLogOut } = props;
+  const {name,lastName,email} = userLogged
+
   return (
     <animated.aside style={style} className="profile-menu">      
       <div>
@@ -18,10 +20,9 @@ export default function MenuProfile(props) {
           <p className="profile-email">{`${email}`}</p>
         </div>
         <div className="separador"></div>
-        <MenuProfileButton text="Dashboard" page="/dashboard"/>
-        <MenuProfileButton text="Settings" page="/settings"/>
+        <MenuProfileLink text="Dashboard" page="/dashboard"/>
         <div className="separador"></div>
-        <LogoutButton text="Salir" handlerLogged={handlerLogged}/>
+        <LogoutLink text="Salir" handlerLogOut={handlerLogOut}/>
       </div>
     </animated.aside>
   );

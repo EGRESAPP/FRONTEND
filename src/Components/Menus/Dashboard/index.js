@@ -12,20 +12,20 @@ import VacantesIcon from "../../../Assets/Icons/employee.svg";
 import AplicacionesIcon from "../../../Assets/Icons/hiring.svg";
 import EgresadosIcon from "../../../Assets/Icons/graduation-cap.svg";
 import ValidacionIcon from "../../../Assets/Icons/validation.svg"
+import PerfilIcon from "../../../Assets/Icons/settings.png"
 
 export default function MenuDashboard(props) {
-  const { userLogged } = props;
-  const {  name, lastName, picture,role } = userLogged;
+  const { userLogged,handlerSection} = props;
+  const {name,lastName,email,avatar,entity,token} = userLogged;
+  let role;
+  if(entity === "Graduates")
+    role = "Egresado"
+  if(entity === "Companies")
+    role = "Empresa"
+  if(entity === "Universities")
+    role = "Universidad"
 
   return (
-    /*<aside className="menu-dashboard-container">
-      <div className="menu-dashboard-header">
-        <img src={picture} alt="" />
-        <h4>{`${name} ${lastName}`}</h4>
-        <h3>{role}</h3>
-      </div>
-      <div className="menu-dashboard-links"></div>
-    </aside>*/
     <Media
       queries={{
         small: "(max-width: 480px)",
@@ -37,12 +37,11 @@ export default function MenuDashboard(props) {
           {matches.small && (
             <aside className="menu-dashboard-container">
               <div className="menu-dashboard-header">
-                <img src={picture} alt="User" title={`${name} ${lastName}`} />
+                <img src={avatar} alt="User" title={`${name} ${lastName}`} />
                 <div className="d-flex flex-column m-1">
                   <span>{`${name} ${lastName}`}</span>
                   <span>{role}</span>
-                </div>
-                
+                </div>                
               </div>
               <div className="menu-dashboard-buttons">
               {role === "Egresado" && (
@@ -67,7 +66,7 @@ export default function MenuDashboard(props) {
           {matches.large && (
             <aside className="menu-dashboard-container">
               <div className="menu-dashboard-header">
-                <img src={picture} alt="" />
+                <img src={avatar} alt="" />
                 <h4>{`${name} ${lastName}`}</h4>
                 <h3>{role}</h3>
               </div>
@@ -75,20 +74,28 @@ export default function MenuDashboard(props) {
               <div className="menu-dashboard-buttons">
                 {role === "Egresado" && (
                   <>
-                    <MenuDashboardButton icon={VacantesIcon} text="Vacantes"/>
+                    <MenuDashboardButton icon={PerfilIcon} text="Perfil" handlerSection={handlerSection}/>
                     <div className="divider"></div>
-                    <MenuDashboardButton icon={AplicacionesIcon} text="Aplicaciones"/>                    
+                    <MenuDashboardButton icon={VacantesIcon} text="Vacantes" handlerSection={handlerSection}/>
+                    <div className="divider"></div>
+                    <MenuDashboardButton icon={AplicacionesIcon} text="Aplicaciones" handlerSection={handlerSection}/>                    
                   </>
                 )}
                 {role === "Empresa" && (
                   <>
+                  <MenuDashboardButton icon={PerfilIcon} text="Perfil"/>
+                    <div className="divider"></div>
                     <MenuDashboardButton icon={EgresadosIcon} text="Egresado"/>
                     <div className="divider"></div>
                     <MenuDashboardButton icon={VacantesIcon} text="Vacantes"/> 
                   </>
                 )}
                 {role === "Universidad" && (
-                  <MenuDashboardButton icon={ValidacionIcon} text="Validaciones"/>
+                  <>
+                    <MenuDashboardButton icon={PerfilIcon} text="Perfil"/>
+                    <div className="divider"></div>
+                    <MenuDashboardButton icon={ValidacionIcon} text="Validaciones"/>
+                  </>
                 )}
               </div>
             </aside>

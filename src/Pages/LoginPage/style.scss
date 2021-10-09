@@ -67,6 +67,9 @@
                         box-shadow: -1px -1px 10px 1px $gris;
                         color: $gunmetal;
                     } 
+                    &::placeholder{
+                        color: $gunmetal;
+                    }
                 }
             }
             .form-check{
@@ -96,7 +99,35 @@
                 }
                 
             }
+            .form-radio{
+                margin: 5px 0;
+                padding-left: 23px;
+                display: flex;
+                align-items: center;
+                color: $gunmetal;
+                label{
+                    margin: 0 20px;
+                    img{
+                        width: 60px;
+                        height: 60px;
+                    }
+                    input{
+                        opacity: 0;
+                        &:checked + img {
+                            outline: 2px solid $seaweed;
+                        }
+                    }
+                    
+                }
+            }
         }
+    }
+}
+
+.link-register{
+    p{
+        margin: 10px 0;
+        display: block;
     }
 }
 
@@ -121,10 +152,20 @@
         .login-right{
             width: 70%;
             .login-form{
-                width: 100%;
+                width: 90%;
+                .form-radio{
+                    label{
+                        margin: 0 5px;
+                        img{
+                            width: 30px;
+                            height: 30px;
+                        }            
+                    }
+                }
             }
         }
     }
+    
 }
 
 @media only screen and(max-height: 480px) {

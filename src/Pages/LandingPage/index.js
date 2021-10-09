@@ -14,6 +14,9 @@ import avatar3 from "../../Assets/Images/Gianina.jpg";
 import cover1 from "../../Assets/Images/cover1.jpg";
 import cover2 from "../../Assets/Images/cover2.jpg";
 import cover3 from "../../Assets/Images/cover3.jpg";
+import uno from "../../Assets/Images/number-one.png";
+import dos from "../../Assets/Images/number-2.png";
+import tres from "../../Assets/Images/number-3.png";
 
 //icons
 import {
@@ -31,27 +34,27 @@ export default function LandingPage(props) {
     {
       name: "Bryanty",
       lastName: "Snepp",
-      title: "Information Systems Manager",
+      title: "Un excelente inicio",
       description:
-        "in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend.",
+        "Por algun lado debes empezar para poder desarrollarte de manera profesional y Egresapp te ayuda a conseguirlo",
       cover: cover1,
       avatar: avatar1,
     },
     {
       name: "Bobbee",
       lastName: "Lee",
-      title: "Social Worker",
+      title: "Me ayudo a encontrar trabajo",
       description:
-        "sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede.",
+        "Gracias a Egresapp encontre donde realizar mis practicas y cuando termino el periodo me contrataron",
       cover: cover2,
       avatar: avatar2,
     },
     {
       name: "Gianina",
       lastName: "Minithorpe",
-      title: "Software Consultant",
+      title: "Facil de usar",
       description:
-        "ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper.",
+        "Estaba buscando un aplicacion facil de usar ya que no soy muy apto para la tegnologia",
       cover: cover3,
       avatar: avatar3,
     },
@@ -83,7 +86,7 @@ export default function LandingPage(props) {
               </div>
               <div className="landing-body">
                 <div className="landing-body-title">
-                  <h1>Comienza hoy y busca la mejor opcion</h1>
+                  <h1>Lee algunas de las opiniones de nuestros usuarios</h1>
                 </div>
                 <div className="landing-body-card">
                   {users.map((user, index) => {
@@ -107,6 +110,40 @@ export default function LandingPage(props) {
                       />
                     );
                   })}
+                </div>
+              </div>
+              <div className="landing-guia">
+                <div className="landing-guia-title">
+                  <h1>¿No sabes por donde Empezar?</h1>
+                </div>
+                <div className="landing-guia-body">
+                <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={uno} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaClipboardList size="60px" className="lading-icon" />
+                      <span>Registrate</span>
+                    </div>
+                  </div>
+                  <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={dos} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaClipboardCheck size="60px" className="lading-icon" />
+                      <span>Completa tu Perfil</span>
+                    </div>
+                  </div>
+                  <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={tres} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaSearch size="60px" className="lading-icon" />
+                      <span>Comieza a buscar</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,7 +173,7 @@ export default function LandingPage(props) {
               </div>
               <div className="landing-body">
                 <div className="landing-body-title">
-                  <h1>Comienza hoy y busca la mejor opcion</h1>
+                <h1>Lee algunas de las opiniones de nuestros usuarios</h1>
                 </div>
                 <div className="landing-body-card">
                   {users.map((user, index) => {
@@ -164,20 +201,35 @@ export default function LandingPage(props) {
               </div>
               <div className="landing-guia">
                 <div className="landing-guia-title">
-                  <h1>No sabes por donde Empezar?</h1>
+                  <h1>¿No sabes por donde Empezar?</h1>
                 </div>
                 <div className="landing-guia-body">
-                  <div className="landing-guia-steps">
-                    <FaClipboardList size="60px" className="lading-icon" />
-                    <span>Registrate</span>
+                  <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={uno} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaClipboardList size="60px" className="lading-icon" />
+                      <span>Registrate</span>
+                    </div>
                   </div>
-                  <div className="landing-guia-steps">
-                    <FaClipboardCheck size="60px" className="lading-icon" />
-                    <span>Completa tu Perfil</span>
+                  <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={dos} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaClipboardCheck size="60px" className="lading-icon" />
+                      <span>Completa tu Perfil</span>
+                    </div>
                   </div>
-                  <div className="landing-guia-steps">
-                    <FaSearch size="60px" className="lading-icon" />
-                    <span>Comieza a buscar</span>
+                  <div className="card-flip">
+                    <div className="flip-front">
+                      <img src={tres} alt="" />
+                    </div>
+                    <div className="flip-back">
+                      <FaSearch size="60px" className="lading-icon" />
+                      <span>Comieza a buscar</span>
+                    </div>
                   </div>
                 </div>
               </div>

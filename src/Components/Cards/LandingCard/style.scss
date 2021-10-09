@@ -42,22 +42,24 @@
     }
 
     .card-body{
-        margin-top: 30px;
+        margin-top: 50px;
         padding: 5px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
         h5{
+            font-size: 20px;
             color:$seaweed;
         }
         h6{
-            margin-bottom: 20px;
+            font-size: 18px;
+            margin-bottom: 30px;
             color: $gunmetal;
         }
         p{
             padding: 0;
-            font-size: 12px;
+            font-size: 16px;
             margin: 0;
             width: 80%;
             height: 100px;
@@ -65,24 +67,4 @@
             color: $gunmetal;
         }
     } 
-    
-    .card-foot{
-        margin: 0 0 10px 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        .btn-foot{
-            width: 100px;
-            height: 40px;
-            font-size: 16px;
-            background-color: white;
-            border: 1px solid $seaweed;
-            border-radius: .25rem;
-            color: $seaweed;
-            &:hover{
-                background-color: $seaweed;
-                color: white;
-            }
-        }
-    }
 }

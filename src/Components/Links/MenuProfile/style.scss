@@ -10,11 +10,12 @@
     font-size: 16px;
     background-color:$bblue;
     color: $seaweed;
-    border:none;
+    border: none;
     border-radius: 5px;
     &:hover{
         background-color: $seaweed;
         color: $bblue;
         cursor: pointer;
+        text-decoration: none;
     }  
 }

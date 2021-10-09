@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { isExpired } from "react-jwt";
 import "./App.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,61 +7,62 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
-import SettingsPage from "./Pages/SettingsPage";
 import DashboardPage from "./Pages/DashboardPage";
 import SearchPage from "./Pages/SearchPage";
+import ErrorPage from "./Pages/ErrorPage"
 
 //componentes
 import Navegacion from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
 export default function App() {
-  const [isLogged, setIsLogged] = useState(true);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTRkOTkzMjVlNjU5N2VlM2NjYjg0YiIsImlhdCI6MTYzMzEyMDI4NCwiZXhwIjoxNjMzMjA2Njg0fQ.qDmUHvLs1lK6a6qOxcqRqbpJMfU1w9x5MGjCvpfb0Vc";
+  const [search, setSearch] = useState("");
+  const [userLogged, setUserLogged] = useState({});
+  const [isLogged, setIsLogged] = useState(false);
 
-  //usuario dumy
-  const user = {
-    name: "Carlos",
-    lastName: "Alcala",
-    email: "calcala@gmail.com",
-    picture:
-      "https://i.blogs.es/66b2a4/photo-1511367461989-f85a21fda167/1366_2000.jpeg",
-    role: "Egresado",
-  };
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userData"));
+    if (userInfo) {
+      const expired = isExpired(userInfo.token);
+      if (!expired) {
+        setUserLogged(userInfo);
+        setIsLogged(true);
+      } else {
+        localStorage.removeItem("userData");
+      }
+    }
+  }, []);
 
-  const handlerLogged = () => {
-    setIsLogged(!isLogged);
-  };
+  const handlerLogOut = () => {    
+      localStorage.removeItem("userData");    
+  }
 
   return (
       <Router>
         <Switch>
-          <Route path="/login">
-            <LoginPage />
+          <Route exact path="/login">
+            <LoginPage handlerIsLogged={setIsLogged} handlerUserLogged={setUserLogged}/>
           </Route>
-          <Route path="/register">
-            <RegisterPage />
+          <Route exact path="/register">
+            <RegisterPage handlerIsLogged={setIsLogged} handlerUserLogged={setUserLogged}/>
           </Route>
-          <Route path="/settings">
-            <Navegacion isLogged={isLogged} handlerLogged={handlerLogged} />
-            <SettingsPage />
+          <Route exact path="/dashboard">
+            <Navegacion isLogged={isLogged} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
+            <DashboardPage/>
             <Footer />
           </Route>
-          <Route path="/dashboard">
-            <Navegacion isLogged={isLogged} handlerLogged={handlerLogged} />
-            <DashboardPage userLogged={user} />
+          <Route exact path="/search">
+            <Navegacion isLogged={isLogged} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
+            <SearchPage token={userLogged} />
             <Footer />
           </Route>
-          <Route path="/search">
-            <Navegacion isLogged={isLogged} handlerLogged={handlerLogged} />
-            <SearchPage token={token} />
-            <Footer />
-          </Route>
-          <Route path="/">
-            <Navegacion isLogged={isLogged} handlerLogged={handlerLogged} />
+          <Route exact path="/">
+            <Navegacion isLogged={isLogged} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
             <LandingPage />
             <Footer />
+          </Route>
+          <Route path="*">
+            <ErrorPage/>
           </Route>
         </Switch>
       </Router>

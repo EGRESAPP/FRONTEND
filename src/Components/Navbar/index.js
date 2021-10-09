@@ -9,6 +9,9 @@ import {useTransition} from "react-spring"
 //componenetes
 import MenuHamburger from "../Menus/Hamburger";
 import LoginButton from "../Buttons/Login";
+import NavbarLink from "../Links/Navbar";
+import InputSearch from "../Inputs/Search";
+import MenuProfile from "../Menus/Profile";
 
 //images
 import Logo from "../../Assets/Images/logo.png";
@@ -22,13 +25,10 @@ import {
   MdPersonAdd,
   MdPerson,
 } from "react-icons/md";
-import NavbarLink from "../Links/Navbar";
-import InputSearch from "../Inputs/Search";
-import MenuProfile from "../Menus/Profile";
 
 export default function Navegacion(props) {
 
-  const { isLogged,handlerLogged } = props;
+  const { isLogged,handlerLogOut,userLogged } = props;
   let history = useHistory();
 
   const [menuHamburgerVisible, setMenuHamburgerVisble] = useState(false);
@@ -103,7 +103,7 @@ export default function Navegacion(props) {
                   }
                   {
                     isLogged && transitionMenuProfile((style, item) => (
-                      item &&  <MenuProfile style={style} handlerLogged={handlerLogged}/>
+                      item &&  <MenuProfile style={style} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
                     ))                       
                   }
                 </div>
@@ -144,7 +144,7 @@ export default function Navegacion(props) {
                   }
                   {
                     isLogged && transitionMenuProfile((style, item) => (
-                      item &&  <MenuProfile style={style} handlerLogged={handlerLogged}/>
+                      item &&  <MenuProfile style={style} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
                     ))                       
                   }
               </div>
@@ -163,8 +163,6 @@ export default function Navegacion(props) {
                     <NavbarLink text="Egresados" />
                     <NavbarLink text="Universidades" />
                     <NavbarLink text="Empresas" />
-
-                    <button type="button" onClick={handlerLogged}>Entrar/Salir</button>
                   </ul>
                   {
                     isLogged ? ( 
@@ -181,7 +179,7 @@ export default function Navegacion(props) {
                 </div>
                 {
                     isLogged && transitionMenuProfile((style, item) => (
-                      item &&  <MenuProfile style={style} handlerLogged={handlerLogged}/>
+                      item &&  <MenuProfile style={style} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
                     ))                       
                   }
               </div>

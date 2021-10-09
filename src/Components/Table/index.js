@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 
 import { MdChevronRight,MdChevronLeft,MdFirstPage,MdLastPage } from "react-icons/md";
+import { getCompanies } from "../../Lib/api";
 
 export default function Table(props) {
-  const { titulo, columns,data } = props;
-  const {totalUsers,limit,totalPages,page,pagingCounter,hasPrevPage,hasNextPage,prevPage,nextPage} = data
+  const { titulo, columns,userLogged } = props;
+  const [data,setData] = useState()
+
+  /*useEffect(()=>{
+      async function getEmpresas(){
+        let response = await getCompanies(userLogged.token,"/companies");
+        console.log(response.data)
+        setData(data)
+      }
+      getEmpresas();
+  },[]);*/
+
+  
   return (
     <section className="table-container" >
       <h2 className="table-title">{titulo}</h2>
@@ -18,7 +30,7 @@ export default function Table(props) {
           </tr>
         </thead>
         <tbody className="table-body">
-            { data.users&&data.users.map((user,index)=>{          
+            {/*data.users&&data.users.map((user,index)=>{          
               return (
                 <tr key={index}>
                   <td><img src={user.avatar}  className="avatar" alt="" /></td>
@@ -30,12 +42,12 @@ export default function Table(props) {
                   <td><button type="button" className="btn-accion">Ver</button></td>
                 </tr>
               )
-            })}             
+            })*/}             
         </tbody>
       </table>
       <div className="pagination-container">
         <div className="resgisters">
-        <span>{`Pagina ${page}/${totalPages}`}</span>  
+        <span>{`Pagina ${1}/${1}`}</span>  
         <select>
           <option value="10">10 Registros</option>
           <option value="25">25 Registros</option>
