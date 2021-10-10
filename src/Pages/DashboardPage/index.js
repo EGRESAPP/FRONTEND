@@ -10,11 +10,12 @@ import { useHistory } from "react-router";
 //componentes
 import MenuDashboard from "../../Components/Menus/Dashboard";
 import Table from "../../Components/Table";
-import EntityForm from "../../Components/EntityForm"
+import EntityForm from "../../Components/EntityForm";
+import CustomAlert from "../../Components/Alert";
 
 export default function DashboardPage(props) {
   const history = useHistory();
-  const [userLogged,setUserLogged] = useState();
+  const [userLogged,setUserLogged] = useState({});
   const [section, setSection] = useState("Perfil");
   const [entity, setEntity] = useState("");
 
@@ -22,13 +23,12 @@ export default function DashboardPage(props) {
     async function getEntity(){
       const userInfo = JSON.parse(localStorage.getItem("userData"));
       if(userInfo){
-        setEntity(userInfo.entity)
-        const response = await getEntityById(userInfo.token,`/${userInfo.entity}/${userInfo._id}`)
-        if(response){
-          response.data.entity = userInfo.entity          
-          setUserLogged(response.data)
+        setEntity(userInfo.entity);
+        const response = await getEntityById(userInfo.token,`/${userInfo.entity}/${userInfo._id}`);
+        if(response.success===true){                 
+          setUserLogged({...response.data,entity:userInfo.entity,token:userInfo.token})
         }else{
-          
+          <CustomAlert class="error" message={response.error}/>
         }
       }else{
         history.push("/")
@@ -71,7 +71,7 @@ export default function DashboardPage(props) {
       
       {
         section === "Perfil" && 
-            <EntityForm entity={entity}/>
+            <EntityForm entity={entity} userLogged={userLogged} handlerUserLogged={setUserLogged}/>
         
       }
       {

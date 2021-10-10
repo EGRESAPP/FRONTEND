@@ -16,7 +16,7 @@ import PerfilIcon from "../../../Assets/Icons/settings.png"
 
 export default function MenuDashboard(props) {
   const { userLogged,handlerSection} = props;
-  const {name,lastName,email,avatar,entity,token} = userLogged;
+  const {name,lastName,avatar,entity} = userLogged;
   let role;
   if(entity === "Graduates")
     role = "Egresado"

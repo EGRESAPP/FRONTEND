@@ -5,7 +5,7 @@ import Media from "react-media";
 import { useLocation } from "react-router-dom";
 
 //servicio
-import { getUsers } from "../../Lib/api";
+import { getByEntity } from "../../Lib/api";
 
 //componentes
 import CardUser from "../../Components/Cards/SearchCard";
@@ -19,7 +19,7 @@ export default function SearchPage(props) {
 
   useEffect(()=>{    
     async function setData(token,url){        
-        const response = await getUsers(token,url);
+        const response = await getByEntity(token,"/companies");
         setUserData(response.data)
     }    
     setData(token,"/users");
