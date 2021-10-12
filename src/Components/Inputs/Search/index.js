@@ -12,12 +12,15 @@ export default function InputSearch(props) {
 
   function handlerChange(event){
     event.preventDefault()
+    console.log(event.target.value)
     setSearch(event.target.value)
   }
 
   function handlerSubmit(event) {
     event.preventDefault()
+    console.log(search)
     const value = search ? `/search/graduates?q=${search}` : `/search/graduates`
+    console.log(value)
     history.push(value) 
   }
   return (

@@ -13,21 +13,19 @@ import InputSearch from "../../Components/Inputs/Search";
 
 export default function SearchPage(props) {
   const { token } = props.token
-  const parameters = new URLSearchParams(useLocation());
-  const search = parameters.get('q');
-  const [entityData, setEntityData] = useState([]);
+  const search = useLocation().search;
+  const [entityData, setEntityData] = useState();
   const [categorySearch, setCategorySearch] = useState('')
-  const history = useHistory()
-  let { entidad } = useParams()
-
+  const history = useHistory();
+  let { entidad } = useParams();
   useEffect(()=>{    
     async function setData(token,url){        
         let response = await getByEntity(token, url);
-        setEntityData(response.data)
-        console.log(response.data)
+        search ? setEntityData(response.data.docs) : setEntityData(response.data) 
     }    
-    setData(token,`/${entidad}`);
-  },[]);
+    
+    setData(token,`/${entidad}${search}`);
+  },[search]);
 
   const entityHandler = (event) =>{
     const {value} = event.target
