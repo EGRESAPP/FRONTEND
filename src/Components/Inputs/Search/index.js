@@ -17,7 +17,8 @@ export default function InputSearch(props) {
 
   function handlerSubmit(event) {
     event.preventDefault()
-    history.push(`/search?q=${search}`);
+    const value = search ? `/search/graduates?q=${search}` : `/search/graduates`
+    history.push(value) 
   }
   return (
     <form className="container-search" onSubmit={handlerSubmit}>

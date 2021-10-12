@@ -7,21 +7,22 @@ import { getEntityById } from "../../../Lib/api";
 
 export default function DetailUserPage(props){ 
 
-      const { token } = props
+      const { token } = props.token
       const [ userData, setUserData] = useState({})
       const userId = useParams()
-      console.log(userId)
+      console.log(userId.id)
 
       useEffect( async () =>{
-             let result = await getEntityById(token,"/graduates",userId)
-             setUserData(result)
-            console.log(result)
+             let result = await getEntityById(token,"/graduates",userId.id)
+             setUserData(result.data)
+            console.log(result.data)
           },[])
 
         return(
               <>
-              <h1>detalle usuario</h1>  
-              <CardUserDetail/>
+              <CardUserDetail
+               userData={userData}
+              />
               </>
         );
 };

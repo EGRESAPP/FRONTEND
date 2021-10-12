@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./style.scss";
 
 import Media from "react-media";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 //servicio
 import { getByEntity } from "../../Lib/api";
@@ -12,27 +12,29 @@ import CardUser from "../../Components/Cards/SearchCard";
 import InputSearch from "../../Components/Inputs/Search";
 
 export default function SearchPage(props) {
-  const { token } = props;
+  const { token } = props.token
   const parameters = new URLSearchParams(useLocation());
   const search = parameters.get('q');
   const [entityData, setEntityData] = useState([]);
   const [categorySearch, setCategorySearch] = useState('')
   const location = useLocation().search
+  const history = useHistory()
 
   useEffect(()=>{    
     async function setData(token,url){        
-        const response = await getByEntity(token,"/graduates");
+        const response = await getByEntity(token, url);
         setEntityData(response.data)
         console.log(location)
         console.log(response.data)
     }    
-    setData(token,"/users");
+    setData(token,"/graduates");
   },[]);
 
   const entityHandler = event =>{
     const {value} = event.target
     console.log(value)
     setCategorySearch(value)
+    history.push(`/search/${value}`)
   }
 
   return (
