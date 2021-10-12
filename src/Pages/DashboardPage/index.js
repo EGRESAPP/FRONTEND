@@ -63,6 +63,7 @@ export default function DashboardPage(props) {
     "Ciudad",
     "Descripción",
     "Tipo de Empleo",
+    "Acciones",
   ]
 
   return (
@@ -78,12 +79,12 @@ export default function DashboardPage(props) {
       }
       {
         section === "Vacantes" && (
-          <Table titulo="Vacantes" columns={colVacantes} userLogged={userLogged}/>
+          <Table titulo="Vacantes" columns={colVacantes} userLogged={userLogged} section={section}/>
         )
       }
       {
         section === "Aplicaciones" && (
-          <Table titulo="Mis Aplicaciones" columns={colVacantes} userLogged={userLogged}/>
+          <Table titulo="Mis Aplicaciones" columns={colVacantes} userLogged={userLogged} section={section}/>
         )
       }
       

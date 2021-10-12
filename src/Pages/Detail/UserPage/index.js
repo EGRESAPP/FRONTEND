@@ -9,7 +9,7 @@ export default function DetailUserPage(){
 
       const [ userData, setUserData] = useState({})
       const userId = useParams()
-
+      
       useEffect( async () =>{
             const user = JSON.parse(localStorage.getItem('userData'));
             let result = await getEntityById(user.token,"graduates",userId.id)
@@ -17,6 +17,7 @@ export default function DetailUserPage(){
             setUserData(result.data)
             },[])
      
+
         return(
               <>
               <CardUserDetail
