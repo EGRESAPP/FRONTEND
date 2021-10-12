@@ -7,10 +7,8 @@ import Egresado from "../../Assets/Icons/graduated.svg";
 import Universidad from "../../Assets/Icons/professor.svg";
 import Empresa from "../../Assets/Icons/manager.svg";
 
-//componentes
-import CustomAlert from "../../Components/Alert";
-
-//libreria
+//librerias
+import swal from 'sweetalert';
 import { useHistory } from "react-router";
 
 //servicio
@@ -20,17 +18,7 @@ export default function LoginPage(props) {
   const history = useHistory();
   const { handlerIsLogged, handlerUserLogged } = props;
 
-  const [alertVisible, setAlertVisible] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const [alertMessage, setAlertMessage] = useState();
-
-  const handleVisible = () => {
-    setAlertVisible(true);
-    setTimeout(() => {
-      setAlertVisible(false);
-    }, 3000);
-  };
-
+  
   async function loginHandler(event) {
     event.preventDefault();
     console.log(event.target);
@@ -39,27 +27,17 @@ export default function LoginPage(props) {
     const entity = event.target.elements.role.value;
       const response = await login({ email, password, entity });
       if (response.success === true) {
-        setAlertMessage("Se inicio sesion correctamente");
-        setLoginSuccess(true);
+        swal("EXITO!", "Se inicio correctamente", "success");
         handlerUserLogged(JSON.stringify(response.data));
         handlerIsLogged(true);
         localStorage.setItem("userData", JSON.stringify(response.data));
-        handleVisible();
         history.push(`/dashboard`);
       } else {
-		    setAlertMessage(response.error);
-        handleVisible();
-        
+        swal("ERROR!", response.error, "error");
       }    
   }
   return (
-    <div className="login-container">
-      {alertVisible && (
-        <CustomAlert
-          clase={loginSuccess ? "exito" : "error"}
-          message={alertMessage}
-        />
-      )}
+    <div className="login-container">      
       <div className="login-left">
         <div className="login-logo">
           <a href="/">

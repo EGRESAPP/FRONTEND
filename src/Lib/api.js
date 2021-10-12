@@ -52,8 +52,15 @@ export async function getEntityById(token,url){
   });
 }
 
-export async function updateEntityById(token,url,body){
-  return await axios.patch(`${baseUrl}${url}`,{headers: {'Authorization': token} },{body})
+export async function updateEntityById(token,url,data){
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization':token,
+    }
+  }
+  return await axios.patch(`${baseUrl}${url}`,data,config)
   .then(function (response) {
     return response.data;
   })
@@ -64,14 +71,23 @@ export async function updateEntityById(token,url,body){
 
 export async function uploadImage(token,url,body){
 
-  console.log(body)
-  return await axios.put(`${baseUrl}${url}`,body)
+  const config = {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization':token,
+    }
+  }
+
+  const data = new FormData();
+
+  data.append('avatar',body.avatar);
+  data.append('email',body.email)
+
+  return await axios.put(`${baseUrl}${url}`,data,config)
   .then(function (response) {
-    console.log("API response:",response)
     return response.data;
   })
   .catch(function (error) {
-    console.log("API error:",error)
-    return error;
+    return error.response.data;
   });
 }

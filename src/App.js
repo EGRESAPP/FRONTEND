@@ -16,7 +16,6 @@ import Navegacion from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
 export default function App() {
-  const [search, setSearch] = useState("");
   const [userLogged, setUserLogged] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 

@@ -10,7 +10,7 @@ import Media from "react-media";
 import { useHistory } from "react-router-dom";
 
 export default function FooterSection (props) {
-  const history = useHistory()
+  //const history = useHistory()
       return (
           
              <Media
