@@ -21,16 +21,15 @@ export default function LoginPage(props) {
   
   async function loginHandler(event) {
     event.preventDefault();
-    console.log(event.target);
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
     const entity = event.target.elements.role.value;
       const response = await login({ email, password, entity });
       if (response.success === true) {
         swal("EXITO!", "Se inicio correctamente", "success");
-        handlerUserLogged(JSON.stringify(response.data));
+        handlerUserLogged({...response.data,entity});
         handlerIsLogged(true);
-        localStorage.setItem("userData", JSON.stringify(response.data));
+        localStorage.setItem("userData", JSON.stringify({...response.data,entity}));
         history.push(`/dashboard`);
       } else {
         swal("ERROR!", response.error, "error");

@@ -22,9 +22,11 @@ export default function DashboardPage(props) {
   useEffect(()=>{
     async function getEntity(){
       const userInfo = JSON.parse(localStorage.getItem("userData"));
+      
       if(userInfo){
         setEntity(userInfo.entity);
-        const response = await getEntityById(userInfo.token,`/${userInfo.entity}/${userInfo._id}`);
+        console.log(userInfo)
+        const response = await getEntityById(userInfo.token,userInfo.entity,userInfo._id);
         if(response.success){                 
           setUserLogged({...response.data,entity:userInfo.entity,token:userInfo.token})
         }else{
@@ -37,7 +39,7 @@ export default function DashboardPage(props) {
 
     getEntity();
     
-  },[]);
+  },[history]);
 
 
   const handlerSection = (event) => {
@@ -45,7 +47,7 @@ export default function DashboardPage(props) {
     setSection(value)
   }
 
-  const colEmpresa = [
+  /*const colA = [
     "Avatar",
     "Nombre",
     "Apellido",
@@ -53,7 +55,7 @@ export default function DashboardPage(props) {
     "Correo",
     "Ciudad",
     "Acciones",
-  ];
+  ];*/
 
   const colVacantes =[
     "Posición",

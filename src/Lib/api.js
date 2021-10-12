@@ -43,7 +43,7 @@ export async function getEntity(token,url){
 }
 
 export async function getEntityById(token,url,id){
-  return await axios.get(`${baseUrl}${url}/${id}`,{headers: {'Authorization': token} })
+  return await axios.get(`${baseUrl}/${url}/${id}`,{headers: {'Authorization': token} })
   .then(function (response) {
     return response.data;
   })
