@@ -3,7 +3,7 @@ import "./style.scss";
 
 //iconos
 
-export default function CardUser(props) {
+export default function CardLanding(props) {
 
     const {cover,avatar,name,lastName,title,description} = props
 
