@@ -5,12 +5,13 @@ import "./style.scss";
 
 export default function CardDetail(props) {
 
-    const {cover,avatar,name,lastName,title,description} = props.userData
+    const {cover,avatar,description, name, lastName, city, email} = props.userData
+    console.log(props.userData)
 
     return(
        <div className='container-fluid'>
            <div className=" detail-card">
-            <div className="card-head card-header">
+            <div className="card-header">
                 <img className="card-cober" src={cover} alt="" />
                 <img className="card-avatar profile-pic" src={avatar} alt="" />   
             </div>
@@ -21,9 +22,18 @@ export default function CardDetail(props) {
                 </div>
                 <div className="card-detail">
                     <h4>Detalle</h4>
-                    <h5>{'Nombre      '}</h5>
-                    <h5>{'Sitio web      '}</h5>
-                    <h5>{'Sector      '}</h5>
+                    <div className='d-flex justify-content-between'>
+                        <p>Nombre:</p>
+                        <p className='font-weight-light'>{name}{' '}{lastName}</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                        <p>Correo:</p>  
+                        <p className='font-weight-light'>{email}</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                        <p>Ciudad</p>
+                        <p className='font-weight-light'>{city}</p>
+                    </div>
                 </div>
             </div>
             

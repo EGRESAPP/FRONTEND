@@ -5,24 +5,23 @@ import { useParams } from 'react-router';
 import { getEntityById } from "../../../Lib/api";
 
 
-export default function DetailUserPage(props){ 
+export default function DetailUserPage(){ 
 
-      const { token } = props.token
       const [ userData, setUserData] = useState({})
       const userId = useParams()
-      console.log(userId.id)
 
       useEffect( async () =>{
-             let result = await getEntityById(token,"/graduates",userId.id)
-             setUserData(result.data)
+            const user = JSON.parse(localStorage.getItem('userData'));
+            let result = await getEntityById(user.token,"graduates",userId.id)
             console.log(result.data)
-          },[])
-
+            setUserData(result.data)
+            },[])
+     
         return(
               <>
               <CardUserDetail
-               userData={userData}
-              />
+              userData={userData}
+              /> 
               </>
         );
 };

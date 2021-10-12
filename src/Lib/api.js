@@ -1,5 +1,5 @@
 const axios = require('axios');
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://egresapp-api-funny-kookaburra-ej.mybluemix.net/";
 
 
 export async function getByEntity(token,url){
