@@ -41,7 +41,7 @@ export default function App() {
       <Router>
         <Switch>
           <Route  path="/userDetail/:id">
-            <DetailUserPage token={userLogged}/>
+            <DetailUserPage userLogged={userLogged}/>
           </Route>
           <Route exact path="/login">
             <LoginPage handlerIsLogged={setIsLogged} handlerUserLogged={setUserLogged}/>

@@ -7,15 +7,15 @@ import { getEntityById } from "../../../Lib/api";
 
 export default function DetailUserPage(props){ 
 
-      const { token } = props
       const [ userData, setUserData] = useState({})
       const userId = useParams()
-      console.log(userId)
+      
 
       useEffect( async () =>{
-             let result = await getEntityById(token,"/graduates",userId)
-             setUserData(result)
-            console.log(result)
+            const user = JSON.parse(localStorage.getItem('userData'));
+            console.log(user)
+             let result = await getEntityById(user.token,"graduates",userId.id)
+             console.log(result.message)
           },[])
 
         return(
