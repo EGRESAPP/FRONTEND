@@ -1,5 +1,9 @@
 const axios = require('axios');
+<<<<<<< HEAD
 const baseUrl = "https://egresapp-api-funny-kookaburra-ej.mybluemix.net";
+=======
+const baseUrl = "https://egresapp-api-funny-kookaburra-ej.mybluemix.net/";
+>>>>>>> 9f1a97e49ebdbc072788d24caf3838033f4b8ff4
 
 
 export async function getByEntity(token,url){
