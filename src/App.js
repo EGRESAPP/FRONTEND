@@ -54,7 +54,7 @@ export default function App() {
             <DashboardPage/>
             <Footer />
           </Route>
-          <Route exact path="/search">
+          <Route exact path="/search/:entidad">
             <Navegacion isLogged={isLogged} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
             <SearchPage token={userLogged} />
             <Footer />

@@ -1,65 +1,70 @@
 @import "../../../Assets/global.scss";
 
-.detail-card{
-    box-sizing: border-box;
-    width: 100%;
-    background-color: white;
-    border: solid 2px $seaweed;
-    border-radius: 1rem;
+.container-fluid{
+    margin-top: 25px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-    
-
-    .card-head{
-        width: 100%;
-        height: 30%;
-        position: relative;
-        .card-cober{
-            
-            width: 100%;
-            height: 100%;
-            border-radius: 1rem 1rem 0 0;
-            object-fit: cover;        
-
-        }
-        .profile-pic{
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            position: absolute;
-            bottom: -50px;
-            left: calc(25% - 50px);
-            border-radius: 100%;
-            border: 1px solid $seaweed;
-        }      
-    }
-
-    .stats{
-        margin-top: 70px;
-        padding: 5px;
-        width: 100%;
+    justify-content: center;
+    .detail-card{
+        box-sizing: border-box;
+        width: 90%;
+        background-color: white;
+        border: solid 2px $seaweed;
+        border-radius: 1rem;
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        h5{
-            font-size: 20px;
-            color:$seaweed;
-        }
-        h6{
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: $gunmetal;
-        }
-        p{
+       
+        .card-header{
+            width: 100%;
+            height: 150px;
+            position: relative;
             padding: 0;
-            font-size: 16px;
-            margin: 0;
-            width: 80%;
-            height: 100px;
-            text-align: justify;
-            color: $gunmetal;
+            .card-cober{
+                
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem 1rem 0 0;
+                object-fit: cover;        
+    
+            }
+            .profile-pic{
+                background-color: white;
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                position: absolute;
+                bottom: -50px;
+                left: calc(25% - 50px);
+                border-radius: 100%;
+                border: 1px solid $seaweed;
+            }      
         }
-    } 
+    
+        .stats{
+            margin-top: 60px;
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .card-resume{
+                width: 50%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+
+            }
+            .card-detail{
+                width: 35%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                text-align: center;
+               p{
+                margin-bottom: 5px;
+               }
+            }
+            
+        } 
+    }
+    
 }
