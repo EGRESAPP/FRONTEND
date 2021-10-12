@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./style.scss";
 
+//imagenes
 import LogoMobile from "../../Assets/Images/logo-mobile.png";
 import Egresado from "../../Assets/Icons/graduated.svg";
 import Universidad from "../../Assets/Icons/professor.svg";
 import Empresa from "../../Assets/Icons/manager.svg";
 
-//componentes
-import CustomAlert from "../../Components/Alert";
 
 //libreria
+import swal from 'sweetalert';
 import { useHistory } from "react-router";
 
 //servicio
@@ -21,17 +21,6 @@ export default function RegisterPage(props) {
   const { handlerIsLogged, handlerUserLogged } = props;
 
   const [entity, setEntity] = useState("Graduates");
-  const [alertVisible, setAlertVisible] = useState(false);
-  const [alertClass, setAlertClass] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
-  const handleVisible = (timeout) => {
-    setAlertVisible(true);
-    setTimeout(() => {
-      setAlertVisible(false);      
-    }, timeout);
-    
-  };
 
   async function registerHandler(event) {
     event.preventDefault();
@@ -47,29 +36,25 @@ export default function RegisterPage(props) {
       }
    
     if (response.success === true) {
-      setAlertMessage("Se ha creado el usuario con exito");
-      setAlertClass(true);     
-      handleVisible(7000);
       response = await login({ email, password, entity });
-      handlerUserLogged(JSON.stringify(response.data));
-      handlerIsLogged(true);
-      localStorage.setItem("userData", JSON.stringify(response.data));
-      history.push("/dashboard")
-    } else {
-      setAlertMessage(response.error);
-      setAlertClass(false); 
-      handleVisible(3000);
+      if (response.success === true) {
+        swal("EXITO!", "Registro Completo", "success");
+        handlerUserLogged({...response.data,entity});
+        handlerIsLogged(true);
+        localStorage.setItem("userData", JSON.stringify({...response.data,entity}));
+        history.push(`/dashboard`);
+      }else{
+        swal("ERROR!", response.error, "error");
+      }
+      
+    } else{
+      swal("ERROR!", response.error, "error");
     }
   }
 
   return (
     <div className="register-container">
-      {alertVisible && (
-        <CustomAlert
-          clase={alertClass ? "exito" : "error"}
-          message={alertMessage}
-        />
-      )}
+      
       <div className="register-right">
         <div className="register-header">
           <h2>Registrarse</h2>
