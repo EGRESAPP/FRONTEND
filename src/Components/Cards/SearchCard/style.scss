@@ -36,16 +36,20 @@
         text-align: justify;
         color: $gunmetal;
     }
-    button{
+    a{
         margin: 20px;
         align-self: flex-end;
+        text-decoration: none;
         border:1px solid $gunmetal;
+        padding: 5px;
         background-color: $white;
         border-radius: .25rem;
         color: $gunmetal;
         &:hover{
             color: white;
             background-color: $seaweed;
+            text-decoration: none;
+
         }
 
     }

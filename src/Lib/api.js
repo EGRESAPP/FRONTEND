@@ -8,7 +8,7 @@ export async function getByEntity(token,url){
       return response.data;
     })
     .catch(function (error) {
-      return error.response.data;
+      return error;
     }); 
 }
 
@@ -42,8 +42,8 @@ export async function getEntity(token,url){
   });
 }
 
-export async function getEntityById(token,url){
-  return await axios.get(`${baseUrl}${url}`,{headers: {'Authorization': token} })
+export async function getEntityById(token,url,id){
+  return await axios.get(`${baseUrl}${url}/${id}`,{headers: {'Authorization': token} })
   .then(function (response) {
     return response.data;
   })

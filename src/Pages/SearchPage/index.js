@@ -15,15 +15,25 @@ export default function SearchPage(props) {
   const { token } = props;
   const parameters = new URLSearchParams(useLocation());
   const search = parameters.get('q');
-  const [userData, setUserData] = useState();
+  const [entityData, setEntityData] = useState([]);
+  const [categorySearch, setCategorySearch] = useState('')
+  const location = useLocation().search
 
   useEffect(()=>{    
     async function setData(token,url){        
-        const response = await getByEntity(token,"/companies");
-        setUserData(response.data)
+        const response = await getByEntity(token,"/graduates");
+        setEntityData(response.data)
+        console.log(location)
+        console.log(response.data)
     }    
     setData(token,"/users");
   },[]);
+
+  const entityHandler = event =>{
+    const {value} = event.target
+    console.log(value)
+    setCategorySearch(value)
+  }
 
   return (
     <Media
@@ -35,7 +45,7 @@ export default function SearchPage(props) {
       {(matches) => (
         <Fragment>
           {matches.small && (
-            <div className="search-container">
+            <div className="search-container" onChange={entityHandler}>
               <div className="search-header">
                 <InputSearch />
                 <div className="search-filter">
@@ -62,7 +72,16 @@ export default function SearchPage(props) {
                     Vacantes
                   </button>
                 </aside>
-                <CardUser />
+                <div className='d-flex flex-column'>
+
+                  { entityData.map((item) => {
+                    return <CardUser 
+                            key={item._id}
+                          entityData= {item} 
+                          />
+                  })}
+
+                  </div>
               </div>
             </div>
           )}
@@ -87,21 +106,40 @@ export default function SearchPage(props) {
                     <h3>Categorias</h3>
                   </div>
                   <div className="search-buttons-options">
-                    <button type="button" className="btn-search">
+                    <button type="button" className="btn-search"
+                      value='graduates'
+                      onClick={entityHandler}>
                       Egresados
                     </button>
-                    <button type="button" className="btn-search">
+                    <button type="button" className="btn-search"
+                      value='universities'
+                      onClick={entityHandler}>
                       Univesidades
                     </button>
-                    <button type="button" className="btn-search">
+                    <button type="button" className="btn-search"
+                      value='companies'
+                      onClick={entityHandler}>
                       Empresas
                     </button>
-                    <button type="button" className="btn-search">
+                    <button type="button" className="btn-search"
+                      value='vacancies'
+                      onClick={entityHandler}>
                       Vacantes
                     </button>
                   </div>
                 </aside>
-                <CardUser />
+                <div className='d-flex flex-column'>
+
+                { entityData.map((item) => {
+                  return <CardUser 
+                          key={item._id}
+                         entityData= {item} 
+                         />
+                })}
+
+                </div>
+                
+               
               </div>
             </div>
           )}

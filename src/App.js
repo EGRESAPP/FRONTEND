@@ -14,6 +14,7 @@ import ErrorPage from "./Pages/ErrorPage"
 //componentes
 import Navegacion from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import DetailUserPage from "./Pages/Detail/UserPage";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -40,6 +41,9 @@ export default function App() {
   return (
       <Router>
         <Switch>
+        <Route  path="/userDetail/:id">
+            <DetailUserPage token={userLogged}/>
+          </Route>
           <Route exact path="/login">
             <LoginPage handlerIsLogged={setIsLogged} handlerUserLogged={setUserLogged}/>
           </Route>
