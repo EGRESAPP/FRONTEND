@@ -17,7 +17,6 @@ import Footer from "./Components/Footer";
 import DetailUserPage from "./Pages/Detail/UserPage";
 
 export default function App() {
-  const [search, setSearch] = useState("");
   const [userLogged, setUserLogged] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 

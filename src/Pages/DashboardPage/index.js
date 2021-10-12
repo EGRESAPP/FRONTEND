@@ -4,14 +4,14 @@ import "./style.scss";
 //service
 import { getEntityById} from "../../Lib/api";
 
-//libreria
+//librerias
+import swal from 'sweetalert';
 import { useHistory } from "react-router";
 
 //componentes
 import MenuDashboard from "../../Components/Menus/Dashboard";
 import Table from "../../Components/Table";
 import EntityForm from "../../Components/EntityForm";
-import CustomAlert from "../../Components/Alert";
 
 export default function DashboardPage(props) {
   const history = useHistory();
@@ -25,10 +25,10 @@ export default function DashboardPage(props) {
       if(userInfo){
         setEntity(userInfo.entity);
         const response = await getEntityById(userInfo.token,`/${userInfo.entity}/${userInfo._id}`);
-        if(response.success===true){                 
+        if(response.success){                 
           setUserLogged({...response.data,entity:userInfo.entity,token:userInfo.token})
         }else{
-          <CustomAlert class="error" message={response.error}/>
+          swal("ERROR!", response.message, "error");
         }
       }else{
         history.push("/")

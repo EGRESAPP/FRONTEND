@@ -1,20 +1,15 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState} from "react";
 import { updateEntityById, uploadImage } from "../../Lib/api";
 import "./style.scss";
 
 //librerias
 import swal from 'sweetalert';
-import fs from 'fs';
-
-
-
 
 export default function EntityForm(props) {
   const { userLogged ,entity, handlerUserLogged} = props;
 
   const [avatarImg,setAvatarImg]= useState({});
   const [coverImg,setCoverImg]= useState({});
-  const [newInfo,setNewInfo]= useState({});
 
   const handlerAvatar = (event) => {
     event.preventDefault();
@@ -27,65 +22,78 @@ export default function EntityForm(props) {
   }
 
 
-  const handlerUpdate = async () => {
-      if(newInfo.avatar){
-        const response = await uploadImage(userLogged.token,`/${entity}/upload/avatar`, {avatar:newInfo.avatar,email:userLogged.email});
-        swal(response.message)
-          
-      }else{
-        swal("no existe el archivo")
-          newInfo.avatar = userLogged.avatar
-      }
-      /*if(cover.exists()){
-        const response = await uploadImage(userLogged.token,`/${entity}/upload/cover`, {cover,email:userLogged.email});
-          swal(response.data)
-          newInfo.cover = response.data.cover
-      }else{
-          newInfo.cover = userLogged.cover
-      }*/
-  }
-
-  const getNewInfo = (event) => {
+  const handlerUpdate = async (event) => {
     event.preventDefault();
-    const name = event.target.elements.name.value;
-    const lastName = event.target.elements.lastName.value;
-    const title = event.target.elements.title.value;
-    const city = event.target.elements.city.value;
-    const webSite = event.target.elements.city.value;
-    const age = event.target.elements.city.value;
-    const phone = event.target.elements.city.value;
-    const description = event.target.elements.description.value;
-    const avatar = event.target.elements.avatar.value
-    const cover = event.target.elements.cover.value;
+    const token = userLogged.token;
+    const avatar = document.querySelector("#avatar").files[0];
+    const cover = document.querySelector("#cover").files[0];
 
-    const object = {name,lastName,title,city,webSite,age,phone,description,avatar,cover}
+    let response;
+    if(avatar){
+      response = await uploadImage(token,`/${entity}/upload/avatar`, {avatar,email:userLogged.email});
+      if(response.success){
+        handlerUserLogged({...userLogged,avatar:response.data})
+      }else{
+        swal("ERROR!", response.message, "error");
+      }
+    }
+    if(cover){
+      response = await uploadImage(token,`/${entity}/upload/cover`, {cover,email:userLogged.email});
+      if(response.success){
+        handlerUserLogged({...userLogged,cover:response.data})
+      }else{
+        swal("ERROR!", response.message, "error");
+      }
+    }  
 
-    setNewInfo(object);
-    console.log(object)
+    const name = document.querySelector("#name").value;
+    const lastName = document.querySelector("#lastName").value;
+    const title = document.querySelector("#title").value;
+    const city = document.querySelector("#city").value;
+    const webSite = document.querySelector("#webSite").value;
+    const age = document.querySelector("#age").value;
+    const phone = document.querySelector("#phone").value;
+    const description = document.querySelector("#description").value;
 
-    swal("Estas seguro de realizar estos cambios?", {
+    let body;
+    if(lastName)
+      body = {name,lastName,title,city,webSite,age,phone,description}
+    else
+      body = {name,title,city,webSite,age,phone,description}
+
+    swal("Actualizar Perfil","Estas seguro de realizar estos cambios?","info", {
       buttons: ["Cancelar", true],
-    }).then(respuesta=>{
-      if(respuesta){
-          handlerUpdate()
+    }).then(async (respuesta)=>{
+      if(respuesta){    
+          response = await updateEntityById(token,`/${entity}/${userLogged._id}`,body);
+
+          if(response.success){
+            handlerUserLogged({...response.data,entity,token});
+            localStorage.setItem("userData",{...response.data,entity,token});
+            handlerReset();
+            swal("EXITO!", "Actualizacion correcta", "success");
+          }else{
+            swal("ERROR!", response.message, "error");
+          }
       }
     });
+  }  
     
-  }
 
-  const handlerReset = () => {
-    document.querySelector('#name').value = userLogged.name
-    document.querySelector('#lastName').value = userLogged.lastName
-    document.querySelector('#title').value = userLogged.title
+  const handlerReset = (user) => {
+    console.log(userLogged)
+    document.querySelector('#name').value = user.name
+    document.querySelector('#lastName').value = user.lastName
+    document.querySelector('#title').value = user.title
     document.querySelector('#avatar').value = ""
     document.querySelector('#cover').value = ""
-    document.querySelector('#city').value = userLogged.city
-    document.querySelector('#webSite').value = userLogged.webSite
-    document.querySelector('#age').value = userLogged.age
-    document.querySelector('#phone').value = userLogged.phone
-    document.querySelector('#description').value = userLogged.description
-    if(userLogged.address)
-      document.querySelector('#address').value = ""
+    document.querySelector('#city').value = user.city
+    document.querySelector('#webSite').value = user.webSite
+    document.querySelector('#age').value = user.age
+    document.querySelector('#phone').value = user.phone
+    document.querySelector('#description').value = user.description
+    if(user.address)
+      document.querySelector('#address').value = user.address
 
   }
 
@@ -93,7 +101,7 @@ export default function EntityForm(props) {
         <section className="perfil-container">
           <h1>Perfil</h1>
           <p>Esta Informacion podra ser vista por otras personas, favor de tener cuidado que se comparte</p>
-        <form className="form-perfil" onSubmit={getNewInfo}>
+        <form className="form-perfil">
               
                 {
                     entity === "Graduates" && (
@@ -195,7 +203,7 @@ export default function EntityForm(props) {
               
               <div className="form-buttons">
                 <button type="button" data-text="Perfil" onClick={handlerReset} className="btn-cancel">Cancel</button>
-                <button type="submit" className="btn-save">Guardar</button>
+                <button type="button" className="btn-save" onClick={handlerUpdate}>Guardar</button>
               </div>
               
         </form>
