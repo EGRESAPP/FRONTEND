@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./style.scss";
 
 import Media from "react-media";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, useParams } from "react-router-dom";
 
 //servicio
 import { getByEntity } from "../../Lib/api";
@@ -18,6 +18,7 @@ export default function SearchPage(props) {
   const [entityData, setEntityData] = useState([]);
   const [categorySearch, setCategorySearch] = useState('')
   const history = useHistory()
+  let { entidad } = useParams()
 
   useEffect(()=>{    
     async function setData(token,url){        
@@ -25,7 +26,7 @@ export default function SearchPage(props) {
         setEntityData(response.data)
         console.log(response.data)
     }    
-    setData(token,"/graduates");
+    setData(token,`/${entidad}`);
   },[]);
 
   const entityHandler = (event) =>{
