@@ -5,7 +5,7 @@ import Media from "react-media";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 
 //servicio
-import { getByEntity } from "../../Lib/api";
+import { getEntity } from "../../Lib/api";
 
 //componentes
 import CardUser from "../../Components/Cards/SearchCard";
@@ -20,7 +20,7 @@ export default function SearchPage(props) {
   let { entidad } = useParams();
   useEffect(()=>{    
     async function setData(token,url){        
-        let response = await getByEntity(token, url);
+        let response = await getEntity(token, url);
         search ? setEntityData(response.data.docs) : setEntityData(response.data) 
     }    
     
@@ -35,7 +35,7 @@ export default function SearchPage(props) {
   }
 
   async function setData(token,url){        
-    let response = await getByEntity(token, url);
+    let response = await getEntity(token, url);
     setEntityData(response.data)
 }    
 

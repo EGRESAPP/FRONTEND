@@ -1,16 +1,6 @@
 const axios = require('axios');
-const baseUrl = "https://egresapp-api-funny-kookaburra-ej.mybluemix.net";
+const baseUrl = "https://egresapp-services.mybluemix.net";
 
-
-export async function getByEntity(token,url){
-    return await axios.get(`${baseUrl}${url}`, { headers: {'Authorization': token} })
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      return error;
-    }); 
-}
 
 export async function login(data){
   return await axios.post(`${baseUrl}/auth/login`,data)
@@ -89,5 +79,41 @@ export async function uploadImage(token,url,body){
   })
   .catch(function (error) {
     return error.response.data;
+  });
+}
+
+export async function createApplication(token,url,data){
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization':token,
+    }
+  }
+
+  return await axios.post(`${baseUrl}${url}`,data,config)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
+export async function getApplicationsByIdGradaute(token,url){
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization':token,
+    }
+  }
+
+  return await axios.get(`${baseUrl}${url}`,config)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error
   });
 }

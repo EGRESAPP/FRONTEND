@@ -37,7 +37,25 @@
     
 }
 
+.results-records{
+    width: auto;
+    height: auto;
+    font-size: 30px;
+    position: absolute;
+    top: 200px;
+    left: 45%;
+    z-index: 2000;
+}
+
+.spinner{
+    position: absolute;
+    top: 200px;
+    left: 55%;
+    z-index: 2000;
+}
+
 .table-body{
+    height: 100px;
     tr{
         height: 40px;
         border-bottom: solid 1px $gunmetal;
@@ -56,6 +74,7 @@
         }
         
     }
+
 }
 
 .avatar{
@@ -67,12 +86,14 @@
 }
 
 .btn-accion{
-    width: 80px;
+    width: 100px;
     height: 40px;
     color: $seaweed;
     background-color: white;
     border: solid 1px $seaweed;
+    font-size: 16px;
     font-weight: 600;
+    border-radius: .5rem;
     &:hover{
         background-color: $seaweed;
         color: white;
@@ -111,7 +132,6 @@
             border-radius: 5px 0 0 5px;
             &:hover{
                 background-color: white;
-                border: 1px solid $seaweed;
                 color: $seaweed;
             }
         }
@@ -121,7 +141,6 @@
             border:none;
             &:hover{
                 background-color: white;
-                border: 1px solid $seaweed;
                 color: $seaweed;
             }
         }
@@ -131,7 +150,6 @@
             border:none;
             &:hover{
                 background-color: white;
-                border: 1px solid $seaweed;
                 color: $seaweed;
             }
         }
@@ -142,7 +160,6 @@
             border-radius: 0 5px 5px 0;
             &:hover{
                 background-color: white;
-                border: 1px solid $seaweed;
                 color: $seaweed;
             }
         }

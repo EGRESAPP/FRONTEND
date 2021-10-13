@@ -47,7 +47,7 @@ export default function DashboardPage(props) {
     setSection(value)
   }
 
-  /*const colA = [
+  const colAplicaciones= [
     "Avatar",
     "Nombre",
     "Apellido",
@@ -55,7 +55,7 @@ export default function DashboardPage(props) {
     "Correo",
     "Ciudad",
     "Acciones",
-  ];*/
+  ];
 
   const colVacantes =[
     "Posición",
