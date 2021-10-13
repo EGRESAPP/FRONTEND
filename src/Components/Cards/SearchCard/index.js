@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 
 //iconos
@@ -9,9 +9,9 @@ export default function CardUser(props) {
 
     return(
 
-        <div className="card-container">
-            <img src={avatar} alt="" />
-            <h5>{name}{lastName}</h5>
+        <div className="card-container search-card">
+            {avatar && < img src={avatar} alt="" />}
+            <h5>{name}{' '}{lastName}</h5>
             <h6>{title}</h6>
             <p>{description}</p>
             <Link to={`/userDetail/${_id}`}>
@@ -19,5 +19,4 @@ export default function CardUser(props) {
             </Link>
         </div>
     );
-
 }
