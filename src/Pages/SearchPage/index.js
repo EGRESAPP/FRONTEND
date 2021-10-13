@@ -37,6 +37,8 @@ export default function SearchPage(props) {
   async function setData(token,url){        
     let response = await getEntity(token, url);
     setEntityData(response.data)
+    console.log(response.data)
+    console.log(entidad)
 }    
 
   return (
@@ -88,7 +90,7 @@ export default function SearchPage(props) {
                     Vacantes
                   </button>
                 </aside>
-                <div className='d-flex flex-column'>
+                <div className='d-flex flex-column cards-tainer'>
 
                   {entityData && entityData.map((item) => {
                     return <CardUser 
@@ -105,7 +107,7 @@ export default function SearchPage(props) {
             <div className="search-container">
               <div className="search-header">
                 <div className="search-result">
-                  <h3>Resultados: {search}</h3>
+                  <h3>Resultados: {search.slice(3,10)}</h3>
                 </div>
                 <div className="search-filter">
                   <button type="button" className="btn-search">
@@ -144,7 +146,7 @@ export default function SearchPage(props) {
                     </button>
                   </div>
                 </aside>
-                <div className='d-flex flex-column'>
+                <div className='d-flex flex-column cards-tainer'>
 
                 {entityData && entityData.map((item) => {
                   return <CardUser 
