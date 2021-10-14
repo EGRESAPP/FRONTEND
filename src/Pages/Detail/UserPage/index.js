@@ -23,13 +23,12 @@ export default function DetailUserPage(){
 
             setData(user.token,`graduates`, userId)
             },[])
-     
 
         return(
               <>
-              <CardUserDetail
-              userData={userData}
-              /> 
+                  <CardUserDetail
+                  userData={userData}
+                  /> 
               </>
         );
 };
