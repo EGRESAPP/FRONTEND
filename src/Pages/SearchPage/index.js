@@ -100,6 +100,7 @@ export default function SearchPage(props) {
                           entityData= {item} 
                           />
                   })}
+                  {!entityData.length && <h3>No se encontraron resultados de {search.slice(3,20)} en esta entidad</h3>}
 
                   </div>
               </div>
@@ -157,6 +158,12 @@ export default function SearchPage(props) {
                          entityData= {item} 
                          />
                 })}
+                  {!entityData.length &&  
+                  <div className="card-container search-card no-found-card">
+                   
+                    <h5 className='no-found-header'>No se encontraron resultados de {search.slice(3,20)} en esta entidad</h5>
+                    
+                </div>}
                
                 </div>
                 

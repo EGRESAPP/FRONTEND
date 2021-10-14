@@ -31,6 +31,7 @@ export default function Navegacion(props) {
   const { isLogged,handlerLogOut,userLogged } = props;
   let history = useHistory();
   const entidad = useParams().entidad
+  console.log(entidad)
 
 
   const [menuHamburgerVisible, setMenuHamburgerVisble] = useState(false);
@@ -60,6 +61,7 @@ export default function Navegacion(props) {
   return (
     <header className="navbar-container">
       <Media
+
         queries={{
           small: "(max-width: 480px)",
           medium: "(min-width: 481px) and (max-width: 1024px)",
@@ -160,7 +162,9 @@ export default function Navegacion(props) {
                   <div className="logo" onClick={() => history.push("/")}>
                     <img src={Logo} alt="logo" />
                   </div>                  
-                  <InputSearch/>
+                  <InputSearch
+                   entidad={entidad}
+                  />
                 </div>
                 <div className="nav-right-side">
                   <ul className="links-container">
