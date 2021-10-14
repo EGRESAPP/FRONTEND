@@ -10,6 +10,7 @@ export default function DetailUserPage(){
 
       const [ userData, setUserData] = useState({})
       const userId = useParams().id
+      const userEntity = useParams().entity
       let location = useParams()
       
       useEffect( async () =>{
@@ -18,10 +19,10 @@ export default function DetailUserPage(){
                   let result = await getEntityById(token,url,id)
                   console.log(result.data)
                   setUserData(result.data)
-                  console.log(location)
+                  console.log(userEntity)
             } 
 
-            setData(user.token,`graduates`, userId)
+            setData(user.token,`${userEntity}`, userId)
             },[])
 
         return(

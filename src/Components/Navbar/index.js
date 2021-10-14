@@ -3,7 +3,7 @@ import "./style.scss";
 
 //librerias
 import Media from "react-media";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {useTransition} from "react-spring"
 
 //componenetes
@@ -30,6 +30,8 @@ export default function Navegacion(props) {
 
   const { isLogged,handlerLogOut,userLogged } = props;
   let history = useHistory();
+  const entidad = useParams().entidad
+
 
   const [menuHamburgerVisible, setMenuHamburgerVisble] = useState(false);
   const [menuProfileVisible, setMenuprofileVisble] = useState(false);
@@ -122,7 +124,9 @@ export default function Navegacion(props) {
                   </div>
                 </div>
                 <div className="nav-right-side">
-                  <InputSearch/>
+                  <InputSearch
+                     entidad={entidad}
+                     />
                   {
                     isLogged ? ( 
                             <button type="button" className="btn-nav" title="Perfil" onClick={handlerMenuProfile}>

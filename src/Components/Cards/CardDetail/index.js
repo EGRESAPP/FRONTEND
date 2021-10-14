@@ -5,7 +5,7 @@ import "./style.scss";
 
 export default function CardDetail(props) {
 
-    const {cover,avatar,description, name, lastName, city, webSite} = props.userData
+    const {cover,avatar,description, name, lastName, city, webSite, email, title} = props.userData
     
 
     return(
@@ -27,12 +27,20 @@ export default function CardDetail(props) {
                         <p className='font-weight-light'>{name}{' '}{lastName ? lastName : null}</p>
                     </div>
                     <div className='d-flex justify-content-between'>
+                        <p>Título:</p>  
+                        <p className='font-weight-light'>{title}</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
                         <p>Página web:</p>  
                         <p className='font-weight-light'>{webSite && webSite.substring(7,28)}</p>
                     </div>
                     <div className='d-flex justify-content-between'>
                         <p>Ciudad:</p>
                         <p className='font-weight-light'>{city}</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                        <p>Correo:</p>
+                        <p className='font-weight-light'>{email}</p>
                     </div>
                 </div>
             </div>

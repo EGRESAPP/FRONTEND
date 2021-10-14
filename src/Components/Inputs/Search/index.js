@@ -2,12 +2,15 @@ import React,{useState} from "react";
 import "./style.scss";
 
 import { useHistory } from "react-router-dom";
+import { useLocation } from 'react-router';
 
 //iconos
 import { MdSearch} from "react-icons/md";
 
 export default function InputSearch(props) {
+
   let history = useHistory();
+  const {entidad} = props
   const [search,setSearch] =useState();
 
   function handlerChange(event){
@@ -19,8 +22,8 @@ export default function InputSearch(props) {
   function handlerSubmit(event) {
     event.preventDefault()
     console.log(search)
-    const value = search ? `/search/graduates?q=${search}` : `/search/graduates`
-    console.log(value)
+    const value = search ? `/search/${entidad}?q=${search}` : `/search/${entidad}`
+    console.log(entidad)
     history.push(value) 
   }
   return (

@@ -53,7 +53,8 @@ export default function SearchPage(props) {
           {matches.small && (
             <div className="search-container" onChange={entityHandler}>
               <div className="search-header">
-                <InputSearch />
+                <InputSearch
+                  />
                 <div className="search-filter">
                   <button type="button" className="btn-search">
                     Recientes
@@ -92,8 +93,9 @@ export default function SearchPage(props) {
                 </aside>
                 <div className='d-flex flex-column cards-tainer'>
 
-                  {entityData && entityData.map((item) => {
+                  { entityData && entityData.map((item) => {
                     return <CardUser 
+                           entidad = {entidad}
                             key={item._id}
                           entityData= {item} 
                           />
@@ -107,7 +109,7 @@ export default function SearchPage(props) {
             <div className="search-container">
               <div className="search-header">
                 <div className="search-result">
-                  <h3>Resultados: {search.slice(3,10)}</h3>
+                  <h3>Resultados: {search.slice(3,20)}</h3>
                 </div>
                 <div className="search-filter">
                   <button type="button" className="btn-search">
@@ -148,13 +150,14 @@ export default function SearchPage(props) {
                 </aside>
                 <div className='d-flex flex-column cards-tainer'>
 
-                {entityData && entityData.map((item) => {
+                { entityData && entityData.map((item) => {
                   return <CardUser 
+                     entidad = {entidad}
                           key={item._id}
                          entityData= {item} 
                          />
                 })}
-
+               
                 </div>
                 
                
