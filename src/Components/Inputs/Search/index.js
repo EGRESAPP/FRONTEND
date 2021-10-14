@@ -22,7 +22,7 @@ export default function InputSearch(props) {
   function handlerSubmit(event) {
     event.preventDefault()
     console.log(search)
-    const value = search ? `/search/${entidad}?q=${search}` : `/search/${entidad}`
+    const value = search ? `/search/graduates?q=${search}` : `/search/'graduates`
     console.log(entidad)
     history.push(value) 
   }
