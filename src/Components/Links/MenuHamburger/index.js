@@ -7,8 +7,9 @@ export default function MenuHamburgerLink(props) {
     <li className="menu-link">
       <a href={page} className="icon">
         <img src={icon}alt="" />
+        <span>{text}</span>
       </a>
-      <span>{text}</span>
+      
     </li>
   );
 }

@@ -25,9 +25,9 @@ export default function MenuHamburger(props) {
       </div>
       <InputSearch/>
       <div>
-        <MenuHamburgerLink text="Egresados" icon={IconEgresado} />
-        <MenuHamburgerLink text="Empresas" icon={IconEmpresa}/>
-        <MenuHamburgerLink text="Universidades" icon={IconUni} />
+        <MenuHamburgerLink text="Egresados" icon={IconEgresado} page="/search/graduates"/>
+        <MenuHamburgerLink text="Empresas" icon={IconEmpresa} page="/search/companies"/>
+        <MenuHamburgerLink text="Universidades" icon={IconUni} page="/search/universities"/>
       </div>
     </animated.aside>
   );

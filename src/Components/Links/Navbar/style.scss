@@ -3,14 +3,17 @@
 .navbar-link{
     margin-right: 10px;
     font-size: 20px;
-    color:$seaweed;
     a{
         padding: 5px;
         text-decoration: none;
+
+        color:$seaweed;
         &:hover{
+            text-decoration: none;
             cursor: pointer;
             background-color: $gris;
             border-bottom: solid 2px $seaweed;
+            color:$seaweed;
         }
     }
 }
