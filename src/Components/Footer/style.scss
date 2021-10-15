@@ -1,0 +1,143 @@
+@import "../../Assets/global.scss";
+
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background-color: $gunmetal;
+}
+
+.footer-left{
+    width: 40%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    img{
+        width: 200px;
+        margin-bottom: 20px;
+    }
+    .footer-links{
+        list-style: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        li{
+            color: $bblue;
+            padding: 0 5px;
+            border-right: 2px solid $bblue;
+            font-size: 16px;
+            a{
+                color: $bblue;
+                text-decoration: none;
+
+                &:hover{
+                    color: $seaweed;
+                }
+            }
+        }
+        li:last-child{
+            border: none;
+        }
+    }
+    p{
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 12px;
+        color: $seaweed;
+    }
+}
+
+.footer-center{
+    padding: 10px;    
+    width: 30%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div{
+        margin: 5px 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        i{
+            padding: 5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+            background-color: $seaweed;
+            color: $bblue;
+        }
+        p{
+            margin: 0;
+            padding-left: 15px;
+            font-size: 16px;
+            width: 70%;
+            color: $bblue;
+            a{
+                color: $bblue;
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+.footer-right{
+    width: 30%;
+    padding: 10px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    color: $bblue;
+    span{
+        align-self: center;
+        font-size: 20px;
+    }
+    p{
+        padding: 5px;
+        text-align: justify;
+    }
+    .footer-icons{
+        padding: 5px;
+        display: flex;
+        a{
+            color: $seaweed;
+        }
+        
+    }
+}
+
+@media only screen and(max-width: 480px) {
+    .footer-container{
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .footer-left{
+        width: 100%;
+        padding: 5px;
+    }
+    
+    .footer-center{
+        width: 100%;
+        div{
+            
+            i{
+
+            width: 40px;
+            height: 40px;
+            }
+        }
+    }
+    
+    .footer-right{
+        width: 100%;
+        
+    }
+}

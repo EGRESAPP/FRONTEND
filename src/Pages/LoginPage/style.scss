@@ -1,0 +1,199 @@
+@import "../../Assets/global.scss";
+
+
+.login-container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    border-radius: 1rem;
+    .login-left{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: $seaweed;
+        .login-logo{
+            width: 110px;
+            height: 110px;
+            padding: 6px;
+            background-color: white;
+            border-radius: 100%;
+            img{
+                width: 100px;
+                height: 100px;
+            }
+        }
+        span{
+            color: white;
+            font-size: 25px;
+        }
+    }
+    .login-right{
+        width: 60%;
+        height: 100%;
+        background-color: white;
+        border-radius: 0 1rem 1rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .login-header{
+            display: flex;
+            align-items: flex-end;
+            height: 20%;
+            color: $seaweed;
+        }
+        .login-form{
+            width: 50%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            .form-input{
+                width: 100%;
+                input{
+                    margin: 10px;
+                    width: 95%;
+                    height: 50px;
+                    border: none;
+                    border-bottom: 1px solid $gunmetal;
+                    padding: 0 10px;
+                    &:focus{
+                        outline: none;
+                        border-bottom: solid 2px $seaweed;
+                        border-radius: .25rem;
+                        box-shadow: -1px -1px 10px 1px $gris;
+                        color: $gunmetal;
+                    } 
+                    &::placeholder{
+                        color: $gunmetal;
+                    }
+                }
+            }
+            .form-check{
+                color: $gunmetal;
+                margin: 10px 0;
+                text-align: center;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                
+            }
+            .form-btn{
+                display: flex;
+                justify-content: center;
+                button{
+                    text-align: center;
+                    text-justify: center;
+                    height: 40px;
+                    width: 200px;
+                    background-color: white;
+                    color: $seaweed;
+                    border: 1px solid $seaweed;
+                    border-radius: 2rem;
+                    &:hover{
+                        background-color: $seaweed;
+                        color: white;
+                    }
+
+                }
+                
+            }
+            .form-radio{
+                margin: 5px 0;
+                padding-left: 23px;
+                display: flex;
+                align-items: center;
+                color: $gunmetal;
+                label{
+                    margin: 0 20px;
+                    img{
+                        width: 60px;
+                        height: 60px;
+                    }
+                    input{
+                        opacity: 0;
+                        &:checked + img {
+                            outline: 2px solid $seaweed;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+.link-register{
+    p{
+        margin: 10px 0;
+        display: block;
+    }
+}
+
+@media only screen and(max-width: 480px) {
+    .login-container{
+        .login-left{
+            width: 30%;
+            .login-logo{
+                width: 80px;
+                height: 80px;
+                padding: 5px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+            span{
+                color: white;
+                font-size: 20px;
+            }     
+        }
+        .login-right{
+            width: 70%;
+            .login-form{
+                width: 90%;
+                .form-radio{
+                    label{
+                        margin: 0 5px;
+                        img{
+                            width: 30px;
+                            height: 30px;
+                        }            
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media only screen and(max-height: 480px) {
+    .login-container{
+        .login-left{
+            width: 30%;
+            .login-logo{
+                width: 80px;
+                height: 80px;
+                padding: 5px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+            span{
+                color: white;
+                font-size: 20px;
+            }     
+        }
+        .login-right{
+            width: 70%;
+            height: 100%;
+            .login-form{
+                width: 50%;
+                height: 100%;
+            }
+        }
+    }
+}
+

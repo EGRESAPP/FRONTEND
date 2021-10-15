@@ -1,0 +1,26 @@
+@import "../../../Assets/global.scss";
+
+.btn-login{
+    height: 40px;
+    width: 110px;
+    white-space: nowrap;
+    margin: 5px;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: $bblue;
+    border-radius: 5px;
+    border: solid 1px $seaweed;    
+    color:$seaweed;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    transition: all 0.2s ease-out;
+    &:hover{
+        border: solid 1px $seaweed;
+        background-color: $seaweed;
+        color:$bblue;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}

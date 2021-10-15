@@ -1,0 +1,30 @@
+@import "../../Assets/global.scss";
+
+
+.error{
+    padding:10px;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    top: calc(50% - 50px);
+    left: calc(50% - 100px);
+    text-justify: center;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 3px solid #b16a71;
+    z-index: 2000;
+}
+
+.exito{
+    padding:10px;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    top: calc(50% - 50px);
+    left: calc(50% - 100px);
+    text-justify: center;
+    color: #155724;
+    background-color: #d4edda;
+    border: solid 3px #61aa72;
+    z-index: 2000;
+}
