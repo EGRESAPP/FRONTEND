@@ -133,6 +133,16 @@
             &:hover{
                 background-color: white;
                 color: $seaweed;
+                cursor: pointer;
+            }
+        }
+        .btn-first-block{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            border-radius: 5px 0 0 5px;
+            &:hover{
+                cursor: not-allowed;
             }
         }
         .btn-left{
@@ -142,6 +152,15 @@
             &:hover{
                 background-color: white;
                 color: $seaweed;
+                cursor: pointer;
+            }
+        }
+        .btn-left-block{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            &:hover{
+                cursor: not-allowed;
             }
         }
         .btn-right{
@@ -151,6 +170,15 @@
             &:hover{
                 background-color: white;
                 color: $seaweed;
+                cursor: pointer;
+            }
+        }
+        .btn-right-block{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            &:hover{
+                cursor: not-allowed;
             }
         }
         .btn-last{
@@ -161,6 +189,16 @@
             &:hover{
                 background-color: white;
                 color: $seaweed;
+                cursor: pointer;
+            }
+        }
+        .btn-last-block{
+            background-color: $seaweed;
+            color: white;
+            border:none;
+            border-radius: 0 5px 5px 0;
+            &:hover{
+                cursor: not-allowed;
             }
         }
     }

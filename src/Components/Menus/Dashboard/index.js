@@ -67,7 +67,10 @@ export default function MenuDashboard(props) {
             <aside className="menu-dashboard-container">
               <div className="menu-dashboard-header">
                 <img src={avatar} alt="" />
-                <h4>{`${name} ${lastName}`}</h4>
+                {
+                  entity === "Graduates" ? (<h4>{`${name} ${lastName}`}</h4>):(<h4>{`${name}`}</h4>)
+                }
+                
                 <h3>{role}</h3>
               </div>
               <div className="divider"></div>
@@ -83,11 +86,13 @@ export default function MenuDashboard(props) {
                 )}
                 {role === "Empresa" && (
                   <>
-                  <MenuDashboardButton icon={PerfilIcon} text="Perfil"/>
+                  <MenuDashboardButton icon={PerfilIcon} text="Perfil" handlerSection={handlerSection}/>
                     <div className="divider"></div>
-                    <MenuDashboardButton icon={EgresadosIcon} text="Egresado"/>
+                    <MenuDashboardButton icon={EgresadosIcon} text="Egresados" handlerSection={handlerSection}/>
                     <div className="divider"></div>
-                    <MenuDashboardButton icon={VacantesIcon} text="Vacantes"/> 
+                    <MenuDashboardButton icon={VacantesIcon} text="Vacantes" handlerSection={handlerSection}/> 
+                    <div className="divider"></div>
+                    <MenuDashboardButton icon={AplicacionesIcon} text="Aplicaciones" handlerSection={handlerSection}/> 
                   </>
                 )}
                 {role === "Universidad" && (

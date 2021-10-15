@@ -25,7 +25,6 @@ export default function DashboardPage(props) {
       
       if(userInfo){
         setEntity(userInfo.entity);
-        console.log(userInfo)
         const response = await getEntityById(userInfo.token,userInfo.entity,userInfo._id);
         if(response.success){                 
           setUserLogged({...response.data,entity:userInfo.entity,token:userInfo.token})
@@ -39,7 +38,7 @@ export default function DashboardPage(props) {
 
     getEntity();
     
-  },[history]);
+  },[]);
 
 
   const handlerSection = (event) => {
@@ -48,12 +47,10 @@ export default function DashboardPage(props) {
   }
 
   const colAplicaciones= [
-    "Avatar",
-    "Nombre",
-    "Apellido",
-    "Titulo",
-    "Correo",
+    "Posición",
+    "Empresa",
     "Ciudad",
+    "Estatus",
     "Acciones",
   ];
 
@@ -63,6 +60,14 @@ export default function DashboardPage(props) {
     "Ciudad",
     "Descripción",
     "Tipo de Empleo",
+    "Acciones",
+  ]
+
+  const colEgresados =[
+    "Avatar",
+    "Nombre",
+    "Titulo",
+    "Descripción",
     "Acciones",
   ]
 
@@ -83,8 +88,13 @@ export default function DashboardPage(props) {
         )
       }
       {
+        section === "Egresados" && (
+          <Table titulo="Egresados" columns={colEgresados} userLogged={userLogged} section={section}/>
+        )
+      }
+      {
         section === "Aplicaciones" && (
-          <Table titulo="Mis Aplicaciones" columns={colVacantes} userLogged={userLogged} section={section}/>
+          <Table titulo="Mis Aplicaciones" columns={colAplicaciones} userLogged={userLogged} section={section}/>
         )
       }
       

@@ -62,7 +62,7 @@ export default function LoginPage(props) {
             />
           </div>
           <div className="form-radio">
-            <span>Entidad</span>
+            <span>Tipo de Usuario</span>
             <label class="" title="Egresado">
               <input type="radio" name="role" value="Graduates" required />
               <img src={Egresado} alt="" />

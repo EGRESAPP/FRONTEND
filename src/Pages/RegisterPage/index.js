@@ -66,7 +66,7 @@ export default function RegisterPage(props) {
               setEntity(e.target.value);
             }}
           >
-            <span>Entidad</span>
+            <span>Tipo de Usuario</span>
             <label class="" title="Egresado">
               <input type="radio" name="Role" value="Graduates" required />
               <img src={Egresado} alt="" />

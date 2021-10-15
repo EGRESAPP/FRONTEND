@@ -42,6 +42,16 @@ export async function getEntityById(token,url,id){
   });
 }
 
+export async function deleteEntityById(token,url,id){
+  return await axios.delete(`${baseUrl}/${url}/${id}`,{headers: {'Authorization': token} })
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
 export async function updateEntityById(token,url,data){
 
   const config = {
@@ -59,7 +69,7 @@ export async function updateEntityById(token,url,data){
   });
 }
 
-export async function uploadImage(token,url,body){
+export async function uploadImageAvatar(token,url,body){
 
   const config = {
     headers: {
@@ -71,6 +81,29 @@ export async function uploadImage(token,url,body){
   const data = new FormData();
 
   data.append('avatar',body.avatar);
+  data.append('email',body.email)
+
+  return await axios.put(`${baseUrl}${url}`,data,config)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data;
+  });
+}
+
+export async function uploadImageCover(token,url,body){
+
+  const config = {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization':token,
+    }
+  }
+
+  const data = new FormData();
+
+  data.append('cover',body.cover);
   data.append('email',body.email)
 
   return await axios.put(`${baseUrl}${url}`,data,config)
