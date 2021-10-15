@@ -7,7 +7,6 @@ import { MdLocationOn,MdLocalPhone,MdMailOutline } from "react-icons/md";
 import { AiFillFacebook,AiFillTwitterSquare,AiFillInstagram,AiFillYoutube,AiFillLinkedin } from "react-icons/ai";
 
 import Media from "react-media";
-import { useHistory } from "react-router-dom";
 
 export default function FooterSection (props) {
   //const history = useHistory()

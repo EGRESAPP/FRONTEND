@@ -4,7 +4,6 @@ import "./style.scss";
 //librerias
 import swal from 'sweetalert';
 import { Spinner } from 'reactstrap';
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 

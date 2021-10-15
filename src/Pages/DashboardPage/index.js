@@ -38,6 +38,7 @@ export default function DashboardPage(props) {
 
     getEntity();
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
 

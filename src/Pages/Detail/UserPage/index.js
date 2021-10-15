@@ -21,6 +21,7 @@ export default function DetailUserPage(){
             } 
 
             setData(user.token,`${userEntity}`, userId)
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             },[])
 
         return(

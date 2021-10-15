@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import "./style.scss";
 
 import { useHistory } from "react-router-dom";
-import { useLocation } from 'react-router';
 
 //iconos
 import { MdSearch} from "react-icons/md";
@@ -15,7 +14,6 @@ export default function InputSearch(props) {
 
   function handlerChange(event){
     event.preventDefault()
-    console.log(event.target.value)
     setSearch(event.target.value)
   }
 

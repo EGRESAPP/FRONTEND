@@ -24,6 +24,7 @@ export default function SearchPage(props) {
     }    
     
     setData(token,`/${entidad}${search}`);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[search]);
 
   const entityHandler = (event) =>{
