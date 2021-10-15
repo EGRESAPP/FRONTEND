@@ -150,3 +150,39 @@ export async function getApplicationsByIdGradaute(token,url){
     return error
   });
 }
+
+export async function getApplicationsByIdVacancy(token,url){
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization':token,
+    }
+  }
+
+  return await axios.get(`${baseUrl}${url}`,config)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error
+  });
+}
+
+export async function getVacanciesByIdCompany(token,url){
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization':token,
+    }
+  }
+
+  return await axios.get(`${baseUrl}${url}`,config)
+  .then(function (response) {
+    return response.data;
+  })
+  .catch(function (error) {
+    return error
+  });
+}

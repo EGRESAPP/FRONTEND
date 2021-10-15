@@ -71,6 +71,24 @@ export default function DashboardPage(props) {
     "Acciones",
   ]
 
+  const colAplicacioneEmpresas =[
+    "Avatar",
+    "Nombre",
+    "Titulo",
+    "Descripción",
+    "Posición",
+    "Ciudad",
+    "Acciones",
+  ]
+
+  const colVacantesEmpresas =[
+    "Posición",
+    "Ciudad",
+    "Descripción",
+    "Tipo de Empleo",
+    "Acciones",
+  ]
+
   return (
     <main className="dashboard-container">
       {
@@ -83,7 +101,7 @@ export default function DashboardPage(props) {
         
       }
       {
-        section === "Vacantes" && (
+        (section === "Vacantes" && entity ==="Graduates") && (
           <Table titulo="Vacantes" columns={colVacantes} userLogged={userLogged} section={section}/>
         )
       }
@@ -93,8 +111,18 @@ export default function DashboardPage(props) {
         )
       }
       {
-        section === "Aplicaciones" && (
+        (section === "Aplicaciones" && entity==="Graduates") && (
           <Table titulo="Mis Aplicaciones" columns={colAplicaciones} userLogged={userLogged} section={section}/>
+        )
+      }
+      {
+        (section === "Aplicaciones" && entity ==="Companies") && (
+          <Table titulo="Aplicaciones Recibidas" columns={colAplicacioneEmpresas} userLogged={userLogged} section={section}/>
+        )
+      }
+      {
+        (section === "Vacantes" && entity ==="Companies") && (
+          <Table titulo="Vacantes Publicadas" columns={colVacantesEmpresas} userLogged={userLogged} section={section}/>
         )
       }
       

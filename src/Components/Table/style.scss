@@ -86,7 +86,8 @@
 }
 
 .btn-accion{
-    width: 100px;
+    margin-right: 5px;
+    width: auto;
     height: 40px;
     color: $seaweed;
     background-color: white;
@@ -99,6 +100,23 @@
         color: white;
     }
     
+}
+
+
+.btn-acciones-icons{
+    border:none;
+    color: $seaweed;
+    background-color: transparent;
+    &:hover{
+        color: $gunmetal;
+    }
+}
+.link-acciones-icons{
+    border:none;
+    color: $seaweed;
+    &:hover{
+        color: $gunmetal;
+    }
 }
 
 .pagination-container{

@@ -41,7 +41,9 @@ export default function App() {
       <Router>
         <Switch>
           <Route  path="/userDetail/:entity/:id">
+            <Navegacion isLogged={isLogged} handlerLogOut={handlerLogOut} userLogged={userLogged}/>
             <DetailUserPage userLogged={userLogged}/>
+            <Footer />
           </Route>
           <Route exact path="/login">
             <LoginPage handlerIsLogged={setIsLogged} handlerUserLogged={setUserLogged}/>

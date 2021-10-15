@@ -4,12 +4,22 @@ import "./style.scss";
 //librerias
 import swal from 'sweetalert';
 import { Spinner } from 'reactstrap';
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 
 //icons
-import { MdChevronRight,MdChevronLeft,MdFirstPage,MdLastPage } from "react-icons/md";
+import { MdChevronRight,MdChevronLeft,MdFirstPage,MdLastPage,MdCheck,MdClose,MdRemoveRedEye } from "react-icons/md";
 
 //servicios
-import {createApplication,getEntity,getApplicationsByIdGradaute, deleteEntityById } from "../../Lib/api";
+import {
+  createApplication,
+  getEntity,
+  getApplicationsByIdGradaute, 
+  deleteEntityById,
+  updateEntityById,
+  getApplicationsByIdVacancy,
+  getVacanciesByIdCompany } from "../../Lib/api";
 
 export default function Table(props) {
   const { titulo, columns,userLogged,section } = props;
@@ -24,7 +34,7 @@ export default function Table(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect( async ()=>{
 
-      if(section === "Vacantes"){
+      if(section === "Vacantes" && userLogged.entity==="Graduates"){
         getVacantesFiltradas()
       }
 
@@ -32,27 +42,114 @@ export default function Table(props) {
         getEgresados(size,page);        
       }
 
-      if(section === "Aplicaciones"){
+      if(section === "Aplicaciones" && userLogged.entity==="Companies"){
+        getApplicationsCompanies();  
+      }     
+
+      if(section === "Vacantes" && userLogged.entity==="Companies"){
+        getVacanciesCompany()
+      } 
+
+      if(section === "Aplicaciones" && userLogged.entity==="Graduates"){
         const applications = await getApplicationsGraduate();
         setData(applications);
         setSize(applications.length);
       }
       
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[section]);
+  },[section,size,page]);
+
+  const handlerSize = (event) => {
+      setSize(event.target.value);
+      setPage(1)
+  }
+
+  const handlerFirstPage = () => {
+    setPage(1);
+  }
+
+  const handlerNextPage = (event) => {
+    const newPage = parseInt(page) + 1
+    setPage(newPage);
+  }
+
+  const handlerPreviusPage = (event) => {
+    const newPage = page - 1
+    setPage(newPage);
+  }
+
+  const handlerLastPage = (event) => {
+    const newPage = totalPage
+    setPage(newPage);
+  }
+
+  const handlerAceptar = (event) => {
+    
+    swal("Aceptar Candidato","Estas seguro de aceptar a este candidato?","info", {
+      buttons: ["Cancelar", true],
+    }).then( async (respuesta)=>{
+      if(respuesta){
+        const id = event.target.getAttribute("data-vacancy");
+        await updateEntityById(userLogged.token,`/Applications/${id}`,{status: "Aceptado"})
+        getApplicationsCompanies();
+      }
+      
+    })
+  }
+
+  const handlerRechazar = (event) => {
+    swal("Rechazar Candidato","Estas seguro de rechazar a este candidato?","error", {
+      buttons: ["Cancelar", true],
+    }).then(async (respuesta)=>{
+      if(respuesta){
+        const id = event.target.getAttribute("data-vacancy");
+        await updateEntityById(userLogged.token,`/Applications/${id}`,{status: "Rechazado"})
+        getApplicationsCompanies();
+      }
+    })
+  }
 
   async function getApplicationsGraduate(){
     let response = await getApplicationsByIdGradaute(userLogged.token,`/Applications/graduate/${userLogged._id}`);
     return response.data.docs;
   }
 
+  async function getApplicationsCompanies(){
+    let listVacancies = await getVacanciesByIdCompany(userLogged.token,`/Vacancies/company/${userLogged._id}`);
+    let listApplicationsPromises = listVacancies.data.docs.map((vacancy)=>{
+          return getApplicationsByIdVacancy(userLogged.token,`/Applications/vacancy/${vacancy._id}`);
+    });
+
+    let listApplications = await Promise.all(listApplicationsPromises);
+
+    let result = listApplications.reduce((acc,cur)=>{
+      return [...acc,...cur.data.docs]
+    },[])
+
+    setData(result);
+    setSize(result.length);
+    setTotalSize(result.length)
+    setTotalPage(1)
+  }  
+
   async function getVacancies(){
     let response = await getEntity(userLogged.token,"/vacancies?limit=10");
     return response.data.docs;
   }
 
-  async function getEgresados(limit,page){
-    let response = await getEntity(userLogged.token,`/graduates?limit=${limit}&page=${page}`);
+  async function getVacanciesCompany(){
+    let response = await getApplicationsByIdVacancy(userLogged.token,`/vacancies/company/${userLogged._id}`);
+    setData(response.data.docs);
+    setSize(response.data.totalDocs);
+    setPage(response.data.page);
+    setTotalSize(response.data.totalDocs);
+    setTotalPage(response.data.totalPages);
+    setHasPrevPage(response.data.hasPrevPage);
+    setHasNextPage(response.data.hasNextPage);
+  }
+
+  async function getEgresados(size,page){
+    let response = await getEntity(userLogged.token,`/graduates?limit=${size}&page=${page}`);
     setData(response.data.docs);
     setSize(response.data.limit);
     setPage(response.data.page);
@@ -68,8 +165,13 @@ export default function Table(props) {
     const applications = await getApplicationsGraduate();
     
     const results = vacancies.filter(({ _id }) => !applications.some(({vacancy}) => _id === vacancy._id ));
-    setSize(results.length);
     setData(results);
+    setSize(results.length);
+    setPage(1)
+    setTotalSize(results.length);
+    setTotalPage(1);
+    setHasPrevPage(false);
+    setHasNextPage(false);
 
   }
 
@@ -88,6 +190,20 @@ export default function Table(props) {
     });
   }
 
+  function renderVacanciesCompany(data){
+    return data.map((data,index)=>{          
+      return (
+        <tr key={index}>
+          <td>{data.position}</td>
+          <td>{data.city}</td>
+          <td>{data.description}</td>
+          <td>{data.part_partime?"Medio Tiempo":"Tiempo Completo"}</td>
+          <td><button type="button" className="btn-accion" value={data._id} onClick={eliminarVacancy}>Eliminar</button></td>
+        </tr>
+      )
+    });
+  }
+
   function renderGraduates(data){
     return data.map((data,index)=>{          
       return (
@@ -96,7 +212,28 @@ export default function Table(props) {
           <td>{`${data.name} ${data.lastName}`}</td>
           <td>{data.title}</td>
           <td>{data.description}</td>
-          <td><button type="button" className="btn-accion" data-vacancy={data._id} >Ver</button></td>
+          <td><Link to={`/userDetail/graduates/${data._id}`} className="link-acciones-icons" target="_blank"><MdRemoveRedEye size="30px" title="Ver Detalle"/></Link></td>
+        </tr>
+      )
+    });
+  }
+
+  function renderGraduatesApplication(data){
+    return data.map((data,index)=>{          
+      return (
+        <tr key={index}>
+          <td ><img className="avatar"src={data.graduate.avatar} alt="" /></td>
+          <td>{`${data.graduate.name} ${data.graduate.lastName}`}</td>
+          <td>{data.graduate.title}</td>
+          <td>{data.graduate.description}</td>
+          <td>{data.vacancy.position}</td>
+          <td>{data.vacancy.city}</td>
+          <td className="buttons-icons">
+            <Link to={`/userDetail/graduates/${data.graduate._id}`} className="link-acciones-icons" target="_blank"><MdRemoveRedEye size="30px" title="Ver Detalle"/></Link>
+            <button type="button" className="btn-acciones-icons" title="Aceptar"><MdCheck size="30px" data-vacancy={data._id}  onClick={handlerAceptar}/></button>
+            <button type="button" className="btn-acciones-icons" title="Rechazar"><MdClose size="30px" data-vacancy={data._id} onClick={handlerRechazar}/></button>
+          </td>
+          
         </tr>
       )
     });
@@ -143,6 +280,20 @@ export default function Table(props) {
       swal("ERROR!", response.message, "error");
     }
   }
+
+  const eliminarVacancy = async (event) => {
+    const id = event.target.value
+    const response = await deleteEntityById(userLogged.token,`Vacancies`,id);
+    if(response.success){
+      const applications = await getApplicationsGraduate();
+      setData(applications)
+      setSize(applications.length);
+      swal("Eliminar Vacante!", "Estas seguro de eliminar esta vacante?", "warning");
+    }else{
+      swal("ERROR!", response.message, "error");
+    }
+  }
+
   
   return (
     <section className="table-container" >
@@ -158,34 +309,40 @@ export default function Table(props) {
         <tbody className="table-body">
             {!size && (<div className="results-records">No hay Resultados que mostrar</div>)}
             { 
-              section === "Vacantes" && (data ? renderVacancies(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
+              (section === "Vacantes" && userLogged.entity==="Graduates" ) && (data ? renderVacancies(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
             }    
             { 
-              section === "Aplicaciones" && (data ? renderApplications(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
+              (section === "Aplicaciones" && userLogged.entity==="Graduates") && (data ? renderApplications(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
             }    
             { 
               section === "Egresados" && (data ? renderGraduates(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
-            }       
+            }
+            { 
+              (section === "Aplicaciones" && userLogged.entity==="Companies") && (data ? renderGraduatesApplication(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
+            }    
+            { 
+              (section === "Vacantes" && userLogged.entity==="Companies") && (data ? renderVacanciesCompany(data) : <Spinner className="spinner" style={{ width: '4rem', height: '4rem', }} />)
+            }     
         </tbody>
       </table>
       <div className="pagination-container">
         <div className="resgisters">
         <span>{data ? `Pagina ${page}/${totalPage}` : `Pagina 1/1`}</span>  
-        <select id="selectedRecords">
+        <select onChange={handlerSize}>
           <option value="10" selected>10 Registros</option>
           <option value="25">25 Registros</option>
           <option value="50">50 Registros</option>
         </select>
-        <span>{data ? `Total de Registros: ${size}/${totalSize}` : `Total de Registros: 0`}</span>  
+        <span>{data ? `Total de Registros: ${size*page}/${totalSize}` : `Total de Registros: 0`}</span>  
         </div>
         
         { data &&(
           
           <div className="pagination">
-            <button type="button" id="firstPage" title="Primera Pagina" className={hasPrevPage?"btn-first":"btn-first-block"} value="1"><MdFirstPage size="35px"/></button>
-            <button type="button" id="previousPage" title="Pagina Anterior" className={hasPrevPage?"btn-left":"btn-left-block"} disabled={`${hasPrevPage}`} value={page+1}><MdChevronLeft size="35px"/></button>
-            <button type="button" id="nextPage" title="Pagina Siguiente" className={hasNextPage?"btn-right":"btn-right-block"} disabled={`${hasNextPage}`} value={page-1}><MdChevronRight size="35px"/></button>
-            <button type="button" id="lastPage" title="Ultima Pagina" className={hasNextPage?"btn-last":"btn-last-block"} disabled={`${hasNextPage}`} value={totalPage}><MdLastPage size="35px"/></button>
+            <button type="button" id="firstPage" title="Primera Pagina" className={hasPrevPage?"btn-first":"btn-first-block"} ><MdFirstPage size="35px" onClick={handlerFirstPage}/></button>
+            <button type="button" id="previousPage" title="Pagina Anterior" className={hasPrevPage?"btn-left":"btn-left-block"} ><MdChevronLeft size="35px" onClick={handlerPreviusPage}/></button>
+            <button type="button" id="nextPage" title="Pagina Siguiente" className={hasNextPage?"btn-right":"btn-right-block"}  ><MdChevronRight size="35px" onClick={handlerNextPage}/></button>
+            <button type="button" id="lastPage" title="Ultima Pagina" className={hasNextPage?"btn-last":"btn-last-block"}  ><MdLastPage size="35px" onClick={handlerLastPage}/></button>
           </div>
         )}        
 

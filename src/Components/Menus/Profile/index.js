@@ -16,7 +16,7 @@ export default function MenuProfile(props) {
     <animated.aside style={style} className="profile-menu">      
       <div>
         <div className="profile-title">
-          <p className="profile-user">{`${name} ${lastName}`}</p>
+          <p className="profile-user">{lastName ? `${name} ${lastName}` : `${name}`}</p>
           <p className="profile-email">{`${email}`}</p>
         </div>
         <div className="separador"></div>

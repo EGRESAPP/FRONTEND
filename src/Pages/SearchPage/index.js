@@ -14,7 +14,7 @@ import InputSearch from "../../Components/Inputs/Search";
 export default function SearchPage(props) {
   const { token } = props.token
   const search = useLocation().search;
-  const [entityData, setEntityData] = useState();
+  const [entityData, setEntityData] = useState([]);
   const [categorySearch, setCategorySearch] = useState('')
   const history = useHistory();
   let { entidad } = useParams();
@@ -37,8 +37,6 @@ export default function SearchPage(props) {
   async function setData(token,url){        
     let response = await getEntity(token, url);
     setEntityData(response.data)
-    console.log(response.data)
-    console.log(entidad)
 }    
 
   return (
