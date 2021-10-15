@@ -179,7 +179,7 @@ export default function Navegacion(props) {
                             </button>
                         ) : (
                           <>
-                            <LoginButton text="Iniciar Sesion" page="/login"/>
+                            <LoginButton text="Ingresa" page="/login"/>
                             <LoginButton text="Registrarse" page="/register"/>
                           </>
                       )
