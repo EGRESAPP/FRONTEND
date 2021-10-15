@@ -26,10 +26,10 @@ export default function FooterSection (props) {
                         <img src={Logo} alt="" title="Egresapp"/>              
                           <ul class="footer-links">
                               <li><a href="/">Home</a></li>
-                              <li><a href="/search">Universidades</a></li>
-                              <li><a href="/search">Empresas</a></li>
-                              <li><a href="/search">Egresados</a></li>
-                              <li><a href="/search">Vacantes</a></li>
+                              <li><a href="/search/universities">Universidades</a></li>
+                              <li><a href="/search/companies">Empresas</a></li>
+                              <li><a href="/search/graduates">Egresados</a></li>
+                              <li><a href="/search/vacancies">Vacantes</a></li>
                           </ul>
                         <p class="">Egresapp © 2021</p>
                       </div>
@@ -48,10 +48,6 @@ export default function FooterSection (props) {
                         </div>              
                       </div>              
                       <div class="footer-right">
-                        <span>About</span>              
-                        <p class="footer-company-about">
-                          Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-                        </p>              
                         <div class="footer-icons">              
                           <a href="https://www.facebook.com">{<AiFillFacebook size="40px"/>}</a>
                           <a href="https://www.twitter.com">{<AiFillTwitterSquare size="40px"/>}</a>
@@ -69,10 +65,10 @@ export default function FooterSection (props) {
                         <img src={Logo} alt="" title="Egresapp"/>              
                           <ul class="footer-links">
                               <li><a href="/">Home</a></li>
-                              <li><a href="/search">Universidades</a></li>
-                              <li><a href="/search">Empresas</a></li>
-                              <li><a href="/search">Egresados</a></li>
-                              <li><a href="/search">Vacantes</a></li>
+                              <li><a href="/search/universities">Universidades</a></li>
+                              <li><a href="/search/companies">Empresas</a></li>
+                              <li><a href="/search/graduates">Egresados</a></li>
+                              <li><a href="/search/vacancies">Vacantes</a></li>
                             </ul>
                         <p class="">Egresapp © 2021</p>
                     </div>

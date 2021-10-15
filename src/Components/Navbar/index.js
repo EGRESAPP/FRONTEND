@@ -168,9 +168,9 @@ export default function Navegacion(props) {
                 </div>
                 <div className="nav-right-side">
                   <ul className="links-container">
-                    <NavbarLink text="Egresados" />
-                    <NavbarLink text="Universidades" />
-                    <NavbarLink text="Empresas" />
+                    <NavbarLink text="Egresados" page="/search/graduates"/>
+                    <NavbarLink text="Universidades" page="/search/universities"/>
+                    <NavbarLink text="Empresas" page="/search/companies"/>
                   </ul>
                   {
                     isLogged ? ( 

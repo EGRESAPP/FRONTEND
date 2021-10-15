@@ -90,7 +90,7 @@ export default function SearchPage(props) {
                 </aside>
                 <div className='d-flex flex-column cards-tainer'>
 
-                  { entityData && entityData.map((item) => {
+                  { entityData && entityData.docs.map((item) => {
                     return <CardUser 
                            entidad = {entidad}
                             key={item._id}
