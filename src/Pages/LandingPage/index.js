@@ -23,7 +23,6 @@ import {
   FaClipboardList,
   FaClipboardCheck,
   FaSearch,
-  FaClipboard,
 } from "react-icons/fa";
 
 //componentes

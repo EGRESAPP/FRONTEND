@@ -15,7 +15,6 @@ export default function SearchPage(props) {
   const { token } = props.token
   const search = useLocation().search;
   const [entityData, setEntityData] = useState([]);
-  const [categorySearch, setCategorySearch] = useState('')
   const history = useHistory();
   let { entidad } = useParams();
   useEffect(()=>{    
@@ -29,7 +28,6 @@ export default function SearchPage(props) {
 
   const entityHandler = (event) =>{
     const {value} = event.target
-    setCategorySearch(value)
     history.push(`/search/${value}`)
     setData(token, `/${value}`)
   }
